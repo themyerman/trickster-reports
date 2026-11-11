@@ -1,19 +1,19 @@
-# Reports
+# Sweep results
 
-Human-readable, **committed** results: result cards, cross-trickster comparisons,
-and write-ups. These are the distilled artifacts — the things that go into the
-paper and that a reader can follow without the raw data.
+Human-readable, aggregate results behind this report's writeup: result cards,
+cross-trickster comparisons, and per-batch summaries. These are the distilled
+artifacts — the things that go into the paper and that a reader can follow without
+the raw data.
 
 ## What is here vs. not
 
-- **Here (committed):** markdown cards and comparison tables, plus a short
-  `summary.md` per run-batch with the narrative and caveats.
-- **Not here:** the raw run logs live in [`../runs/`](../runs) (git-ignored, one
-  machine's output), and the held-out attack set lives in `../library/private/`
-  (git-ignored). Every report names the **run id(s)** it was built from, and each
-  run's own `run.json` carries the git commit, the library file hashes, the
-  predictions hash and the limits — so a report always ties back to a fully
-  specified run even though the JSONL itself is not committed.
+- **Here:** markdown cards and comparison tables, plus a short `summary.md` per
+  run-batch with the narrative and caveats.
+- **Not here (withheld by design):** the raw conversation logs and the attack
+  library are *not* published — this is a findings repo, not the toolkit (see the
+  top-level README). Every result still names the **run id(s)** it was built from,
+  and the provenance for each run (git commit, limits, model) is published as
+  aggregate metadata in [`../data/run_metadata.json`](../data/run_metadata.json).
 
 ## Batches
 
@@ -49,21 +49,14 @@ paper and that a reader can follow without the raw data.
 One folder per run-batch:
 
 ```
-reports/
+sweeps/
   YYYY-MM-DD-<slug>/
-    summary.md        # narrative + master table + caveats (read this first)
-    comparison.md     # `trickster compare` across the batch
-    card-<trickster>.md   # `trickster card` per run
+    summary.md            # narrative + master table + caveats (read this first)
+    comparison.md         # cross-trickster comparison across the batch
+    card-<trickster>.md   # one result card per run
 ```
 
-## How a report is generated
-
-The cards and comparison are the CLI's own markdown output, saved to a file:
-
-```bash
-trickster card runs/<run-id> > reports/<batch>/card-<trickster>.md
-trickster compare runs/<run-a> runs/<run-b> ... > reports/<batch>/comparison.md
-```
-
-`summary.md` is written by hand (or with help) and states what is solid, what is
-noisy (e.g. repeats=1 means n=1 per cell), and what the next run should pin down.
+The cards and comparisons are the toolkit's own markdown output; `summary.md` is
+written by hand and states what is solid, what is noisy (e.g. repeats=1 means n=1
+per cell), and what the next run should pin down. Each run's full provenance is in
+[`../data/run_metadata.json`](../data/run_metadata.json).
