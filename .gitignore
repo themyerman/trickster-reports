@@ -1,0 +1,7 @@
+# Never publish raw attack material or transcripts, even if copied in by mistake
+*.jsonl
+conversations*
+runs/
+library/
+src/
+.DS_Store
