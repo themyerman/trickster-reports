@@ -1,0 +1,1228 @@
+{
+  "note": "Provenance for every run behind the published findings. Raw transcripts are withheld; see README.",
+  "run_count": 56,
+  "runs": [
+    {
+      "run_id": "20261108T210010Z-3f8560",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "claude-opus-5-5@effort=medium"
+      ],
+      "setups": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1",
+        "C2",
+        "C3",
+        "C5"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "f83f7a87716dc4d88b8e667a3312fabf7d4fbb2a"
+    },
+    {
+      "run_id": "20261108T211209Z-a538f4",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "claude-opus-5-5@effort=medium"
+      ],
+      "setups": [
+        "S0"
+      ],
+      "costumes": [
+        "C1",
+        "C2",
+        "C3",
+        "C5"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "4934418463a1696a134fc90c4850978b62775b15"
+    },
+    {
+      "run_id": "20261108T211655Z-a961ad",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "claude-haiku-5-5@effort=medium"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1",
+        "C2",
+        "C3",
+        "C5"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "547b915b175a1ee0c1c05207f781e30f3fe7d4f1"
+    },
+    {
+      "run_id": "20261108T214720Z-f0b952",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "6516374dcb790ae26734abf4d55c214de3c99da9"
+    },
+    {
+      "run_id": "20261108T215523Z-79aa9f",
+      "status": "complete",
+      "trickster": "loki",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "6516374dcb790ae26734abf4d55c214de3c99da9"
+    },
+    {
+      "run_id": "20261108T221207Z-09ee8b",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "9a87a7c10844db16717ce01bccc7280eff1a8d21"
+    },
+    {
+      "run_id": "20261108T221645Z-26f625",
+      "status": "complete",
+      "trickster": "reynard",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "9a87a7c10844db16717ce01bccc7280eff1a8d21"
+    },
+    {
+      "run_id": "20261108T222602Z-277903",
+      "status": "complete",
+      "trickster": "loki",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "9a87a7c10844db16717ce01bccc7280eff1a8d21"
+    },
+    {
+      "run_id": "20261108T223406Z-12ad60",
+      "status": "complete",
+      "trickster": "tailor",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "9a87a7c10844db16717ce01bccc7280eff1a8d21"
+    },
+    {
+      "run_id": "20261108T224607Z-cb631c",
+      "status": "complete",
+      "trickster": "spider",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "59a2ad6c6d66bd41d6b8b40f3c5ce13c4446779c"
+    },
+    {
+      "run_id": "20261108T225507Z-7fed2e",
+      "status": "complete",
+      "trickster": "coyote",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "59a2ad6c6d66bd41d6b8b40f3c5ce13c4446779c"
+    },
+    {
+      "run_id": "20261108T231222Z-b096c0",
+      "status": "complete",
+      "trickster": "mask",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "59a2ad6c6d66bd41d6b8b40f3c5ce13c4446779c"
+    },
+    {
+      "run_id": "20261108T232042Z-f05320",
+      "status": "complete",
+      "trickster": "wanderer",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "59a2ad6c6d66bd41d6b8b40f3c5ce13c4446779c"
+    },
+    {
+      "run_id": "20261109T010358Z-958fd7",
+      "status": "complete",
+      "trickster": "pardoner",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "c8bc595adc9b21a5be5c341bd3cc4a5f16a91ed9"
+    },
+    {
+      "run_id": "20261109T012225Z-c0ad6a",
+      "status": "running",
+      "trickster": "raven2",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "d8d9e5346238b20a220745bcab5d875a43c96169"
+    },
+    {
+      "run_id": "20261109T013542Z-531096",
+      "status": "complete",
+      "trickster": "raven3",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "a95c4363c23d8483ebc6c68adef591d16015fecf"
+    },
+    {
+      "run_id": "20261109T014436Z-c622b9",
+      "status": "complete",
+      "trickster": "raven3",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "e1e4d093a4b8842c2dcfcdc641241fe9f5adafb3"
+    },
+    {
+      "run_id": "20261109T020247Z-bfa013",
+      "status": "complete",
+      "trickster": "raven3",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@seed=0"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "f0544d82770dc49d006cd83dd59e276d576cb77d"
+    },
+    {
+      "run_id": "20261109T023304Z-d99692",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 2,
+      "toolkit_version": "0.1.0",
+      "git_commit": "99434074680a2c2bd25b13abdeb5aa2a9e9d43d4"
+    },
+    {
+      "run_id": "20261109T023603Z-1f7d8b",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "99434074680a2c2bd25b13abdeb5aa2a9e9d43d4"
+    },
+    {
+      "run_id": "20261109T024631Z-09d627",
+      "status": "complete",
+      "trickster": "reynard",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T030815Z-7a6605",
+      "status": "complete",
+      "trickster": "loki",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T032826Z-57ffe3",
+      "status": "complete",
+      "trickster": "tailor",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T035152Z-8ffdf2",
+      "status": "complete",
+      "trickster": "spider",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T041316Z-9a71e0",
+      "status": "complete",
+      "trickster": "coyote",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T045947Z-4ce62e",
+      "status": "complete",
+      "trickster": "mask",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T051900Z-0679d0",
+      "status": "complete",
+      "trickster": "wanderer",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T090030Z-3e5803",
+      "status": "running",
+      "trickster": "pardoner",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T132624Z-f23109",
+      "status": "complete",
+      "trickster": "pardoner",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "46ca2af21db323cb3856968729172ba5380195fe"
+    },
+    {
+      "run_id": "20261109T152416Z-1e0fe0",
+      "status": "running",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "dry-run"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1",
+        "C2",
+        "C3",
+        "C5"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "e841308d30e223e5f42e053fac540ce8d141242b"
+    },
+    {
+      "run_id": "20261109T153057Z-13f089",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T193029Z-672172",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T194138Z-045cb4",
+      "status": "complete",
+      "trickster": "reynard",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T195709Z-e6989d",
+      "status": "complete",
+      "trickster": "loki",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T200911Z-45741b",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:granite3.1-dense:2b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T202149Z-e6cfba",
+      "status": "complete",
+      "trickster": "tailor",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T204116Z-f79e13",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T204716Z-38566d",
+      "status": "complete",
+      "trickster": "spider",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T211500Z-ce2fa5",
+      "status": "complete",
+      "trickster": "coyote",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36ab3e11274a983bbcdd594a28526d090d526e2e"
+    },
+    {
+      "run_id": "20261109T221447Z-0d8443",
+      "status": "complete",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "9ed375e90f868eda37623363f225e73cb84cee57"
+    },
+    {
+      "run_id": "20261109T223740Z-59a815",
+      "status": "complete",
+      "trickster": "wanderer",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "0b01a28135a06c5ff91ed5d07ff091aef47d9552"
+    },
+    {
+      "run_id": "20261110T024836Z-5f9f4f",
+      "status": "complete",
+      "trickster": "pardoner",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "7086675e7ceb48b05ed1fd3a1e44e68f75bda892"
+    },
+    {
+      "run_id": "20261110T032455Z-9a1109",
+      "status": "complete",
+      "trickster": "raven",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "36c0b595a9819dc3eeabf100d73fc091f3c1ba2c"
+    },
+    {
+      "run_id": "20261110T032926Z-a28bf3",
+      "status": "complete",
+      "trickster": "reynard",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T033808Z-7b7fe1",
+      "status": "complete",
+      "trickster": "loki",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T034526Z-2d7633",
+      "status": "complete",
+      "trickster": "tailor",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T035400Z-11a67d",
+      "status": "complete",
+      "trickster": "spider",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T040332Z-6ed743",
+      "status": "complete",
+      "trickster": "coyote",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T042504Z-528d59",
+      "status": "complete",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T043250Z-71a289",
+      "status": "complete",
+      "trickster": "wanderer",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T063122Z-26350a",
+      "status": "complete",
+      "trickster": "pardoner",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 3,
+      "toolkit_version": "0.1.0",
+      "git_commit": "06435381baff1aeb93933a48c83c3f1c9bb53823"
+    },
+    {
+      "run_id": "20261110T220720Z-832358",
+      "status": "complete",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 1,
+      "toolkit_version": "0.1.0",
+      "git_commit": "4e3026d28a2383ca3e5dd234a834414dde113370"
+    },
+    {
+      "run_id": "20261110T221023Z-f0140f",
+      "status": "running",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 20,
+      "toolkit_version": "0.1.0",
+      "git_commit": "4e3026d28a2383ca3e5dd234a834414dde113370"
+    },
+    {
+      "run_id": "20261110T221349Z-dbeecb",
+      "status": "complete",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "ollama:llama3.2:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 8,
+      "toolkit_version": "0.1.0",
+      "git_commit": "4e3026d28a2383ca3e5dd234a834414dde113370"
+    },
+    {
+      "run_id": "20261110T230747Z-67b4a3",
+      "status": "complete",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "ollama:qwen2.5:3b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 8,
+      "toolkit_version": "0.1.0",
+      "git_commit": "474643d5561d6e7f587278a3716013319e671142"
+    },
+    {
+      "run_id": "20261110T235527Z-65ea33",
+      "status": "complete",
+      "trickster": "puck",
+      "goal": "steal",
+      "models": [
+        "ollama:nemotron-mini:4b@temp=0.7"
+      ],
+      "setups": [
+        "S0",
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "costumes": [
+        "C1"
+      ],
+      "repeats": 8,
+      "toolkit_version": "0.1.0",
+      "git_commit": "474643d5561d6e7f587278a3716013319e671142"
+    }
+  ]
+}
