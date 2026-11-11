@@ -694,8 +694,8 @@ Every figure in this draft traces back to a specific run, and every run carries 
 record — the exact models, the attack-library hashes, the limits, and the git commit it ran
 under. What I publish, and what I hold back, is a deliberate split.
 
-**Published** — findings and *aggregate* data, in a public findings repository
-(link forthcoming):
+**Published** — findings and *aggregate* data, in a public findings repository at
+<https://github.com/themyerman/trickster-reports>:
 
 - the per-model result bundles (cards, comparisons, and the narrative summaries):
   Llama 3.2 (`calibrated-sweep`), Qwen 2.5 (`qwen-3b-sweep`), Nemotron-Mini (`nemotron-4b-sweep`);
