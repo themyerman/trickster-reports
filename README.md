@@ -1,14 +1,36 @@
 # Trickster reports
 
 Public findings from an independent project on **social-engineering AI assistants** — how
-easily small language models can be *talked* into disclosing data they're supposed to protect,
-taking deception, misdirection, and persuasion techniques and pointing them at AI systems.
+easily small language models can be *talked* into disclosing data they're supposed to protect.
+The method takes classic deception, misdirection, and persuasion patterns — modeled on the
+trickster figures of world mythology — and points them at AI systems to measure what actually
+gets through.
 
 Each study is published here as a **self-contained report** in its own folder: the writeup,
 the full aggregate results, and derived data. The **attack toolkit itself is not here** — this
 repo publishes the science, not the weapon (see [below](#whats-not-here)).
 
 **Author:** Thomas Myer · myerman@gmail.com · Licensed [CC BY 4.0](LICENSE)
+
+## Summary of findings so far
+
+From the first study (`steal` — talking an AI customer-service assistant into leaking planted
+**fake** secrets, across three small open-weight models and five defense levels):
+
+- **No model is simply "secure" — each has a security *shape*.** The trick that wrecks one
+  barely moves another, so you can't buy safety by picking the "secure" vendor.
+- **One lever works on all of them: persona role-play.** "Play a character who isn't bound by
+  the rules" lands at about the same rate on every model tested (~21–26%) — the one attack your
+  model choice won't save you from.
+- **Prompt-written rules are close to decoration; code-enforced checks hold.** Moving the
+  defense from a politely-worded instruction into actual code dropped the leak rate from ~33%
+  to ~0%. And a secret sitting in the prompt still leaks until it's kept out of the prompt
+  entirely.
+- **A raw leak rate hides what leaks.** The "leakiest" model guarded *customer* data best; the
+  "safest" most readily gave up its *own* staff credential. Score the secret type, not just the
+  count.
+
+Full numbers, confidence intervals, method, and caveats are in the report itself.
 
 ## Reports
 
@@ -39,12 +61,40 @@ text appears is illustrative lines quoted inside a report's writeup. Researchers
 who want to verify a result or run the battery against their own assistant can contact the
 author for scoped access.
 
+## About
+
+An independent research project by **Thomas Myer**, who studied folklore and mythology in both
+undergraduate and graduate school and now builds red-team tooling for AI systems. The trickster
+framing isn't decoration: the world's oldest stories are a catalog of social-engineering
+moves — getting past the guard with charm, disguise, borrowed authority, and persistence
+instead of force — which turns out to be a useful map for probing AI assistants. You don't need
+a background in mythology to read the results.
+
+Everything here uses **fake data and fake secrets** against a purpose-built test target; no real
+systems, accounts, or customers are involved.
+
+## Citing this work
+
+> Myer, Thomas (2026). *Using Trickster Paradigms to Trick Small Open-Weight LLMs into Leaking
+> Secrets.* Trickster Reports. https://github.com/themyerman/trickster-reports
+
+```bibtex
+@techreport{myer2026trickster,
+  author      = {Myer, Thomas},
+  title       = {Using Trickster Paradigms to Trick Small Open-Weight LLMs into Leaking Secrets},
+  institution = {Trickster Reports},
+  year        = {2026},
+  url         = {https://github.com/themyerman/trickster-reports}
+}
+```
+
 ## Adding a new report
 
 1. Create `reports/<YYYY-MM>-<goal>-study/` and drop in its writeup (`paper.pdf` + `.md` +
    `figures/`), its `sweeps/` results, and its `data/` (aggregate CSVs + run metadata).
 2. Add a `README.md` in that folder describing the study.
-3. Add one row to the **Reports** table above.
+3. Add one row to the **Reports** table above, and a bullet to **Summary of findings** if it
+   lands a new headline result.
 
 Keep the published/withheld split intact — the attack toolkit, attack library, and raw
 transcripts stay out; the `.gitignore` blocks `*.jsonl`, `runs/`, `src/`, and `library/` from
