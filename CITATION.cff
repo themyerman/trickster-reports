@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use these findings, please cite them as below."
+title: "Trickster Reports: social-engineering AI assistants"
+abstract: >-
+  Independent research measuring how easily small open-weight language models can
+  be talked into disclosing data they are meant to protect, using attacks modeled
+  on the trickster figures of world mythology. Publishes findings and aggregate
+  data; the attack toolkit and raw transcripts are withheld (responsible disclosure).
+type: dataset
+authors:
+  - family-names: Myer
+    given-names: Thomas
+    email: myerman@gmail.com
+date-released: 2026-11-11
+url: "https://github.com/themyerman/trickster-reports"
+repository-code: "https://github.com/themyerman/trickster-reports"
+license: CC-BY-4.0
+keywords:
+  - AI security
+  - LLM security
+  - prompt injection
+  - jailbreak
+  - red teaming
+  - social engineering
+  - responsible disclosure
+  - open-weight models
+references:
+  - type: report
+    title: "Using Trickster Paradigms to Trick Small Open-Weight LLMs into Leaking Secrets"
+    authors:
+      - family-names: Myer
+        given-names: Thomas
+    year: 2026
+    url: "https://github.com/themyerman/trickster-reports/tree/main/reports/2026-11-steal-study"
