@@ -4,8 +4,8 @@ The second report in this repo. Where the first study social-engineered a live a
 leaking secrets, this one looks at a quieter attack: **planting an instruction in a file an app
 saves and loads back later**, and what actually stops it.
 
-**Read it:** [**Using the Trickster Toolkit to Smuggle Commands into an AI Game Master**](stored-injection-note.md)
-— a short field note (one app, one attack, four models).
+**Read it:** [**Using the Trickster Toolkit to Smuggle Commands into an AI Game Master**](stored-injection-note.pdf)
+(PDF) — a short field note (one app, one attack, four models). ([Markdown source](stored-injection-note.md).)
 
 The app under test is public: [**rpg-character-agents**](https://github.com/themyerman/rpg-character-agents)
 (the vulnerability and the fix both live there).
