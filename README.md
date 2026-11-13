@@ -30,13 +30,27 @@ From the first study (`steal` — talking an AI customer-service assistant into 
   "safest" most readily gave up its *own* staff credential. Score the secret type, not just the
   count.
 
-Full numbers, confidence intervals, method, and caveats are in the report itself.
+From the second study (`plant` — a command hidden in a tool-using app's own saved files, fired on
+reload):
+
+- **"Use a frontier model" is not a defense.** The attack lands 100% on a small open-weight model,
+  on Haiku, *and* on Sonnet; only the single top-tier model (Opus) resists. Two frontier models
+  fell completely.
+- **Heuristic defenses are capability-dependent, so they fail silently.** A "treat this as data"
+  note goes 100% → ~7% → 0% as the model gets smarter — and isn't even stable run-to-run. It passes
+  your tests on a good model and quietly stops working when the model is downgraded for cost.
+- **Model choice is not a security control**, because app devs and ops pick the model for cost and
+  latency, not security. Only a **structural** fix — strip untrusted loaded content to its skeleton
+  in code — held at 0% on every model, independent of which one is behind the app.
+
+Full numbers, confidence intervals, method, and caveats are in each report itself.
 
 ## Reports
 
 | Report | Goal | Summary |
 |---|---|---|
 | [**2026-11 — Talking small LLMs into leaking secrets**](reports/2026-11-steal-study/) | `steal` | Nine trickster archetypes vs. three small open-weight models guarding fake customer data. No model is uniformly "secure"; persona role-play beats all of them; code-enforced checks hold where prompt rules don't. |
+| [**2026-11 — Smuggling commands into an AI game master**](reports/2026-11-stored-injection-study/) | `plant` | Stored prompt injection through a tool-using app's own saved files. Only the single top-tier model resists (two frontier models fall 100%); heuristic defenses are capability-dependent; only a structural fix holds on every model. |
 
 *(More reports will be added here as the project continues — one row per study.)*
 
