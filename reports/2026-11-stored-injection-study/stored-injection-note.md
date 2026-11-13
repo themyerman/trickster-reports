@@ -14,8 +14,9 @@ I'm a child of the 1980s, which means I grew up on *Dungeons & Dragons* and *Tra
 never quite stopped — I still roll dice with friends when life allows. About six months ago I did
 the modern version of buying yet more dice: I built an AI-backed tool to help me run games —
 [**rpg-character-agents**](https://github.com/themyerman/rpg-character-agents), which is public.
-It generates characters, NPCs (non-player characters — the barkeeps, villains, and quest-givers a
-game master has to invent on the fly), ships, worlds, encounters, and rumors.
+It generates characters, NPCs (non-player characters — the barkeeps, villains, and quest-givers
+who fill out a game), ships, worlds, encounters, and rumors. Most GMs don't invent this stuff at
+the table — we plan ahead. But sometimes you just need a few ideas seeded, and that's the job.
 
 Then, in the last two weeks, I built something else: the Trickster Toolkit, a kit for
 social-engineering AI systems the way the tricksters of myth get past a guard — with charm,
