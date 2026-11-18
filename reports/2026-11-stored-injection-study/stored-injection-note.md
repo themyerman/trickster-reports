@@ -10,16 +10,25 @@
 
 ## Where this came from
 
-I'm a child of the 1980s, which means I grew up on *Dungeons & Dragons* and *Traveller* and
-never quite stopped — I still roll dice with friends when life allows. About six months ago I did
-the modern version of buying yet more dice: I built an AI-backed tool to help me run games —
+I'm a child of the 1980s, which means I grew up on *Dungeons & Dragons* and *Traveller* and never
+quite stopped. I rarely get to roll dice with friends these days, but I still think about those
+sessions and how much they shaped the way I think about inspiration, creativity, and storytelling.
+I also remember the other side of it: once you become a dungeonmaster your friends actually like,
+the pressure piles on to keep every session interesting. Do it well once and it's your job forever.
+
+About six months ago, when I first started messing around with Claude, I built an AI-backed tool to
+help me run games —
 [**rpg-character-agents**](https://github.com/themyerman/rpg-character-agents), which is public.
 It generates characters, NPCs (non-player characters — the barkeeps, villains, and quest-givers
 who fill out a game), ships, worlds, encounters, and rumors. Most GMs don't invent this stuff at
 the table — we plan ahead. But sometimes you just need a few ideas seeded, and that's what this
 tool is meant to help with.
 
-Then, in the last two weeks, I built something else: the Trickster Toolkit, a kit for
+But I didn't want a black-box chat spitting out rumors and NPCs willy-nilly. Heck, I could do that
+in any chat window. What I wanted was a system that respects the rules of each game's universe —
+Traveller is not D&D is not Deadlands — and then gets creative inside those guardrails.
+
+Then, in the last two weeks, because I work in cybersecurity, I built something else: the Trickster Toolkit, a kit for
 social-engineering AI systems the way the tricksters of myth get past a guard — with charm,
 disguise, and misdirection instead of force (that was [report #1](../2026-11-steal-study/)). And
 once you've built a set of lockpicks, you start eyeing your own doors. So I pointed the toolkit at
@@ -31,11 +40,11 @@ The RPG tool works by having a model call real tools (dice, lookups) in a loop. 
 it back later** to build on: reuse a party you generated last week to seed tonight's encounter,
 that sort of thing.
 
-That reuse is a trapdoor. A saved file isn't trusted input — it's prior model output, or a
+That reuse is a trapdoor. A saved file isn't trusted input: it's prior model output, or a
 file a user edited, or (because the app ships example files "ready to use or adapt") something
 you downloaded from a stranger. When the app loads one of those files straight back into a
 prompt, **anything hidden in it is now talking to your model.** I planted a short instruction
-in a saved party brief — and on the next run the app read it back and the model did exactly
+in a saved party brief, and on the next run the app read it back and the model did exactly
 what the instruction said. No hack, no exploit. I just left a note and waited.
 
 (A *party brief* is one of those saved files: a short text description of an adventuring party —
@@ -43,16 +52,16 @@ who's in it, what they're after, how they fit together — that the app writes o
 reload it later and build the next session on top of it. It's meant to be reused. That's the
 point of it, and also the problem.)
 
-Then I tried to defend it, and measured which defenses actually work. Two findings I need to
-bubble up now:
+Then I tried to defend it, and measured which defenses actually work. Two findings worth
+stopping on:
 
 1. **Picking a "smart model" is not a defense.** The attack lands 100% of the time on a small
    open-weight model — *and* on Anthropic's Haiku, *and* on mid-tier Sonnet. It only bounces off
    the single top-tier model (Opus). Two frontier models fell completely. "Just use a good
    model" is a coin that lands tails three times out of four.
-2. **Politely asking the model to behave is theater whose curtain rises and falls with the
-   model.** A "treat this as data, not instructions" note does nothing on the small open-weight model, half-
-   works on Haiku, and fully works on Sonnet. You cannot predict it. The only defense that held
+2. **Politely asking the model to behave only works if the model is already sharp enough to
+   listen.** A "treat this as data, not instructions" note does nothing on the small open-weight
+   model, half-works on Haiku, and fully works on Sonnet. You cannot predict it. The only defense that held
    on *every* model was the one that doesn't ask the model anything — it strips the dangerous
    content out in code before the model ever sees it.
 
@@ -85,7 +94,7 @@ Then I had the app generate an event with that brief loaded, and checked what ca
 wasn't "the magic word appears somewhere" — a model will sometimes echo a token from the brief as
 flavor without actually obeying. Success was the model **abandoning its job**: no event, no
 formatting, just the marker. That's unambiguous, and it can't be faked by accident. (Getting the
-scoring right mattered — my first cut counted echoes as hits and nearly told me the opposite of
+scoring right mattered: my first cut counted echoes as hits and nearly told me the opposite of
 the truth. Measuring injection is easy to do badly.)
 
 ## 3. What I found
@@ -120,7 +129,7 @@ models you might actually reach for fall every single time.
 was hunting for, and a blocklist loses to a thesaurus. Only the structural fix — removing the
 free-text channel the injection needs — drops it to zero.
 
-**Down the prose-notice column** — 100% → ~7% → 0% — this is the quietly alarming one. That polite
+**Down the prose-notice column** — 100% → ~7% → 0%. That polite
 "treat this as data" note isn't worthless; it just gets *more* effective as the model gets smarter:
 useless on Qwen, barely-working on Haiku, fully working on Sonnet. And it's not even *steady*: on
 Haiku I ran the exact same test twice and got 13% one time and 0% the next — a defense sitting this
@@ -183,7 +192,7 @@ It's not free and it's not airtight. Two catches I'd rather name than have you f
 
 - **It costs richness.** A reloaded brief now contributes structure, not narrative flavor — you
   lose the backstory paragraphs. For an *untrusted* file that's the right call. For your *own* saved
-  files it's pure loss, and that bugged me enough to fix it — see the next section.
+  files it's pure loss, and that bugged me enough to fix it (see the next section).
 - **It is not a proof.** An attacker who formats the directive *as* a bullet point can still get a
   line through. Stripping prose shrinks the attack surface a lot; it doesn't prove a negative. The
   only full guarantee is never letting untrusted content reach the model as text at all.
@@ -208,7 +217,7 @@ lean on the model's judgment.
 
 For the tool's own files, it now does both jobs. My own saved party keeps its full backstory when I
 reuse it; a downloaded "cool crew" with a command buried in it gets skeletonized before the model
-sees a word. I confirmed both — a trusted file passes through whole, a foreign poisoned one still
+sees a word. I confirmed both: a trusted file passes through whole, a foreign poisoned one still
 scores 0%.
 
 But I have to be straight about what this *doesn't* fix, because it's the part that stings. Provenance
@@ -216,35 +225,34 @@ only vouches for files the tool made itself. The moment I want to bring in somet
 paragraph a friend sent, a PDF, a whole campaign I wrote up by hand back in my D&D days — there's no
 fingerprint, so the tool can't tell my hand-built backstory from a planted command. It treats them
 the same and strips both to the skeleton. For material I actually want to *import*, that isn't a
-clever win, it's a wall — and it's the honest cost of building the defense this way.
+clever win, it's a wall. That's the honest cost of building the defense this way.
 
-So I built a door in the wall, with a person standing in it. The tool now has an **import** step:
+So I built a way through, with a human in it. The tool now has an **import** step:
 point it at an outside file and it shows you the whole thing, runs the same screen a generated file
 gets, and makes you type `trust` before it will take it. Only then does it record the file as yours
 and load it with full prose from then on. This does **not** make the content safe — nothing can,
-which is the entire point of this note. What it does is make the trust decision *explicit, one-time,
+which is the whole point. What it does is make the trust decision *explicit, one-time,
 and visible*: you vouch for one specific file, with its text in front of you, instead of the app
 quietly trusting every file it ever loads. (The other route is still open too: paste the outside
 text in as creative direction and let the tool regenerate from it, so what lands on disk is the
 tool's own screened output.)
 
-Both of those put the decision on a human who's looking right at it — and that's the right place for
+Both of those put the decision on a human who's looking right at it, and that's the right place for
 it, but I won't pretend it's airtight. A person can still be talked into vouching for the wrong file;
 social engineering is exactly the thing the Trickster Toolkit is built to do. There's no version of
 "load a stranger's rich text and have it be safe" that removes the human. The honest move is to make
 the human's part small, deliberate, and impossible to do by accident — which is what an explicit
 `trust` prompt, on one file at a time, with the content on screen, is for.
 
-I'll be honest about what this *adds*, because it isn't free. It's a new moving part — a manifest of
-fingerprints to write, read, and keep alongside the files — and more moving parts is more that can
-break. If the manifest is lost, your own files simply re-read as untrusted and get stripped
+It isn't free. It's a new moving part: a manifest of fingerprints to write, read, and keep
+alongside the files, and more moving parts means more that can break. If the manifest is lost, your own files simply re-read as untrusted and get stripped
 (annoying, not dangerous — it fails safe). And provenance answers "untampered," not "harmless": if
 the tool generated a poisoned brief in the first place — someone fed it a nasty prompt at creation
 time — that file is genuinely the tool's own work, so it *would* be trusted. That's why the tool
 still screens content at the moment it saves it, and why you can't just smuggle a file in and have
 it trusted: you can't forge the fingerprint. It's layered, and no one layer is enough on its own. Every
-control you add to claw back usability is also one more thing to get right — that trade is the
-actual engineering, and it's worth saying plainly.
+control you add to claw back usability is also one more thing to get right. That trade is the
+actual engineering.
 
 ## 7. What to do if you're shipping something like this
 
@@ -256,7 +264,7 @@ actual engineering, and it's worth saying plainly.
   Strip untrusted content down to the structured fields you actually need.
 - **Assume your model will be downgraded.** Design so that the day someone swaps in a cheaper
   model is a non-event. If "we moved to a smaller model to cut costs" is also "we silently became
-  100% injectable," you've got an architecture problem wearing a model problem's clothes.
+  100% injectable," that's an architecture problem, not a model problem.
 - **Give outside content an explicit front door.** A strict "strip everything you can't vouch for"
   default is safe but it strangles the legitimate case — importing a file a user actually wants. Add
   a deliberate import path that shows the content, screens it, and makes a human vouch for it once,
