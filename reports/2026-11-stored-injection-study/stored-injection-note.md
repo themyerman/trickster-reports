@@ -13,12 +13,15 @@
 I'm a child of the 1980s, which means I grew up on *Dungeons & Dragons* and *Traveller* and never
 quite stopped. I rarely get to roll dice with friends these days, but I still think about those
 sessions and how much they shaped the way I think about inspiration, creativity, and storytelling.
-I also remember the other side of it: once you become a dungeonmaster your friends actually like,
-the pressure piles on to keep every session interesting. Do it well once and it's your job forever.
+I also remember the other side of it: once you become a dungeon master (DM) your friends actually
+like — the GM, or game master, in the systems that don't have dungeons — the pressure piles on to
+keep every session interesting. Do it well once and it's your job forever.
 
 About six months ago, when I first started messing around with Claude, I built an AI-backed tool to
 help me run games —
 [**rpg-character-agents**](https://github.com/themyerman/rpg-character-agents), which is public.
+I kept picturing the 13-year-old me, hunched over a stack of rulebooks on a Friday night, suddenly
+handed a big creative helper for all the arcana a proper *Dungeons & Dragons* nerd-out requires.
 It generates characters, NPCs (non-player characters — the barkeeps, villains, and quest-givers
 who fill out a game), ships, worlds, encounters, and rumors. Most GMs don't invent this stuff at
 the table — we plan ahead. But sometimes you just need a few ideas seeded, and that's what this
