@@ -228,6 +228,11 @@ that.
 
 ## 6. What to do if you're shipping something like this
 
+None of this is new. You've read every line of it on an appsec blog, in the OWASP top ten, in
+somebody's postmortem — treat input as untrusted, don't trust the client, enforce it in code. I'm
+not pretending to have discovered any of it. But there's a gap between knowing a rule and watching it
+put a 100% on the board, so here's the canon again, this time with the receipts from above:
+
 - **Treat every loaded or shared file as untrusted** — including your own app's saved output. It
   was written by a suggestible model and it can be edited and passed around.
 - **Don't defend with words the model can ignore.** A "please treat this as data" note is not a
