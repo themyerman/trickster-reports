@@ -1,6 +1,6 @@
 # Using the Trickster Toolkit to Smuggle Commands into an AI Game Master
 
-### Stored prompt injection, and why picking a smarter model won't save you
+### Stored prompt injection, and why "just use a smarter model" is a prayer, not a plan
 
 **Thomas Myer** · myerman@gmail.com
 
@@ -10,17 +10,25 @@
 
 ## Where this came from
 
-I'm a child of the 1980s, which means I grew up on *Dungeons & Dragons* and *Traveller* and never
-quite stopped. I rarely get to roll dice with friends these days, but I still think about those
-sessions and how much they shaped the way I think about inspiration, creativity, and storytelling.
-I also remember the other side of it: once you become a dungeon master (DM) your friends actually
-like — the GM, or game master, in the systems that don't have dungeons — the pressure piles on to
-keep every session interesting. Do it well once and it's your job forever.
+Picture it: 1983, a friend's kitchen table, a bag of Doritos already going stale. I'm
+thirteen, and I'm the Dungeon Master — the DM, or the GM (game master) in the systems that don't have
+dungeons — which is a fancy way of saying I'm the one on the hook to make the next four hours worth
+everybody's Saturday. And the whole time, the same questions run on a loop behind my eyes. Are they
+having fun? Is this landing, or am I marching them through a B-movie I half-remember? Can they tell
+I'm cribbing the villain straight out of a Conan comic I read twice? Do they come back next week — or
+is this the session where everyone suddenly remembers they have homework?
+
+That's the gig, and I loved it. I'm a child of the 1980s; I grew up on *Dungeons & Dragons* and
+*Traveller*. Then I grew up the other way — job, bills, the usual — and mostly put the dice away. I
+still get a game in now and then, but those kitchen-table nights are where most of my ideas about
+inspiration, creativity, and storytelling come from.
+And so is the pressure: once you're a DM your friends actually like, you don't get to coast. Do it
+well once and it's your job forever.
 
 About six months ago, when I first started messing around with Claude, I built an AI-backed tool to
 help me run games —
 [**rpg-character-agents**](https://github.com/themyerman/rpg-character-agents), which is public.
-I kept picturing the 13-year-old me, hunched over a stack of rulebooks on a Friday night, suddenly
+I kept picturing that same kid at the kitchen table, hunched over a stack of rulebooks, suddenly
 handed a big creative helper for all the arcana a proper *Dungeons & Dragons* nerd-out requires.
 It generates characters, NPCs (non-player characters — the barkeeps, villains, and quest-givers
 who fill out a game), ships, worlds, encounters, and rumors. Most GMs don't invent this stuff at
@@ -38,6 +46,13 @@ read that one, you know I studied world mythology and folklore at both the under
 levels — so if you're laughing at the straight line from D&D to Arthurian legend to trickster folklore,
 well, sure. We all have our niche of nerdery, and in the world of security I'm not that unusual.
 
+Now a confession, because I do security for a living and the honest order of events matters here: when
+I built the RPG tool, security wasn't anywhere in my head. It was a toy — a nights-and-weekends
+experiment to see if I could get Claude to run a half-decent game. The thought that it might have
+holes worth worrying about didn't show up until I'd built the Trickster Toolkit and finally had a
+reason, and the tools, to go looking. I didn't design this thing to be safe. I built it to be fun,
+and then I came back with a flashlight.
+
 And once you've built a set of lockpicks, you start eyeing your own doors. So I pointed the toolkit at
 my own RPG app to see what holes I'd left in it. This note is what I found, and what I did about it.
 
@@ -47,17 +62,18 @@ The RPG tool works by having a model call real tools (dice, lookups) in a loop. 
 it back later** to build on: reuse a party you generated last week to seed tonight's encounter,
 that sort of thing.
 
-That reuse is a trapdoor. In security terms, a trapdoor is an unguarded way in — a gap that lets
-something slip through that the checks on the front door would have caught.
+That reuse is a trapdoor. And before the security crowd in the back starts waving — yes, it's a real
+term of art: an unguarded way in, a gap that lets something slip past the checks the front door
+would've caught. File that away. It matters in about four paragraphs.
 
 In my RPG tool, that gap is the file it saves and loads back in. A saved file isn't trusted input:
 it's prior model output, or a file a user edited, or (because the app ships example
 files "ready to use or adapt") something you downloaded from a stranger. When the app loads one of
 those files straight back into a prompt, **anything hidden in it is now talking to your model.**
 
-So this is what I did: I planted a short instruction in a saved party brief, and on the next run the
-app read it back and the model did exactly what the instruction said. No hack, no exploit. The app
-carried the payload in for me.
+So here's what I did. I wrote one sentence, hid it in a file the app likes to reread, and waited. Next
+run, the app read it back and the model did exactly what the sentence told it to. No hack. No exploit.
+No zero-day. I didn't pick the lock — I mailed myself the key and the app signed for the package.
 
 For those who were too cool to play D&D (or too afraid to ask), a *party brief* is one of those
 saved files: a short text description of an adventuring party — who's in it, what they're after, how
@@ -77,8 +93,8 @@ stopping on:
    on *every* model was the one that doesn't ask the model anything — it strips the dangerous
    content out in code before the model ever sees it.
 
-The fix is to stop trusting loaded files and handle them structurally. I did, by default. Details
-below.
+The fix is to stop trusting loaded files and handle them in code. I did that. Then I found out my fix
+had a problem of its own — and honestly, that's the good part, so stick around.
 
 ## 1. The trapdoor: loaded files are not trusted input
 
@@ -131,7 +147,7 @@ Opus's defense cells are blank because the raw attack already fails on it, so th
 nothing left to defend. **†** Haiku's prose figure is unstable: two identical runs of 15 gave 13%
 and 0% (pooled ≈7%) — more on why that's the point just below.)*
 
-Read it three ways.
+Three ways to read this grid. All of them are bad news for somebody.
 
 **Down the first column** — the raw attack, no defense — it lands 100% on three of four models,
 *including two frontier models*, Haiku and Sonnet. Only the biggest, Opus, shrugs it off. Three of the four
@@ -173,7 +189,8 @@ My first instinct was the obvious one: if loaded files are the problem, strip th
 before the model sees them — keep the headings and bullets, throw away the prose a command has to
 hide in. I shipped that as the secure default.
 
-Then I attacked my own fix, and it didn't just have a gap — it backfired. I hid the directive as a
+Then I attacked my own fix. This is the part of the movie where the detective realizes the call is
+coming from inside the house. It didn't just have a gap — it backfired. I hid the directive as a
 single bullet in a section a brief doesn't normally have, and measured it on the small open-weight
 model (n=15):
 
@@ -187,7 +204,8 @@ The second row is the whole story. With no defense the attack is a dud — burie
 model ignores it (0/15). Turn the defense on and it lands every single time. Stripping the brief to a
 skeleton deleted the story the directive was drowning in and left the model holding one small context
 whose loudest line was the attacker's. The control I added to be safe manufactured a 100% exploit out
-of a 0% one. A heuristic that can do that isn't a weak lock; it's a trapdoor I installed myself.
+of a 0% one. I didn't *find* this vulnerability; I shipped it, with a commit message calling it a
+security fix. That's not a weak lock — it's a trapdoor with my name in the git blame.
 
 So I stopped filtering by what text *looks like* and started enforcing what a brief is *allowed to
 be*. Four layers, each covering the one in front of it:
@@ -257,8 +275,9 @@ put a 100% on the board, so here's the canon again, this time with the receipts 
   marker), which echo can't fake. The small-model arm is Qwen 2.5 3B via Ollama; the Claude arm is
   Haiku 5.5 / Sonnet 5.5 / Opus 4.7 via the API.
 - **Fake data, fake secrets, a purpose-built target.** No real systems, accounts, or users.
-- **Gotchas worth knowing.** Llama 3.2 3B couldn't even run the test — it narrates its tool calls
-  as text instead of calling them, so it never generates anything to hijack. And naive canary
+- **Gotchas worth knowing.** Llama 3.2 3B couldn't even run the test — it *narrates* its tool calls
+  instead of making them, describing the dice instead of rolling them, so it never generates
+  anything to hijack. And naive canary
   scoring (token-anywhere) overcounts wildly; score the *behavior*, not the string.
 - **The attack toolkit is withheld.** Consistent with the rest of this project: I publish the
   finding and the defense, not a working kit.
