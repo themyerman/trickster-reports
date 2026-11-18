@@ -1,6 +1,6 @@
 # Using the Trickster Toolkit to Smuggle Commands into an AI Game Master
 
-### Stored prompt injection, and why "just use a smarter model" is a prayer, not a plan
+### Stored prompt injection, and why "just use a smarter model" is not a strategy
 
 **Thomas Myer** · myerman@gmail.com
 
@@ -11,23 +11,22 @@
 ## Where this came from
 
 Picture it: the summer of 1984. We're playing Van Halen too loud, trying to flip the score on
-*Asteroids*, riding our bikes without helmets because nobody's invented fear yet, and — the part that
-matters — playing *Dungeons & Dragons* at somebody's kitchen table, a bag of Doritos going stale
-between us. I just turned thirteen, and I'm the Dungeon Master — the DM, or the GM (game master) in
+*Asteroids*, riding our bikes without helmets because helmets are for dweebs, and — the part that
+matters — playing *Dungeons & Dragons* at somebody's kitchen table, with too many snacks and sugary drinks. 
+I just turned thirteen, and I'm the Dungeon Master — the DM, or the GM (game master) in
 the systems that don't have dungeons — which is a fancy way of saying I'm the one on the hook to make
 the next four hours worth everybody's Saturday. And the whole time, the same questions run on a loop behind my eyes. Are they
 having fun? Is this landing, or am I marching them through a B-movie I half-remember? Can they tell
-I'm cribbing the villain straight out of a Conan comic I read twice? Do they come back next week — or
+I'm cribbing the villain straight out of a Conan comic I read last week? Do they come back next week — or
 is this the session where everyone suddenly remembers they have homework?
 
-That's the gig, and I loved it. I'm a child of the 1980s; I grew up on *Dungeons & Dragons* and
-*Traveller*. Then I grew up the other way — job, bills, the usual — and mostly put the dice away. I
-still get a game in now and then, but those kitchen-table nights are where most of my ideas about
-inspiration, creativity, and storytelling come from.
-And so is the pressure: once you're a DM your friends actually like, you don't get to coast. Do it
-well once and it's your job forever.
+That's the gig, and I loved it — D&D, *Traveller*, all of it. Then I grew up the other way — job,
+bills, the usual — and mostly put the dice away. I still get a game in now and then, but those
+kitchen-table nights are where most of my ideas about inspiration, creativity, and storytelling come
+from. And so is the pressure: once you're a DM your friends actually like, you don't get to coast. Do
+it well once, and it's your job forever.
 
-About six months ago, when I first started messing around with Claude, I built an AI-backed tool to
+About nine months ago, when I first started messing around with Claude, I built an AI-backed tool to
 help me run games —
 [**rpg-character-agents**](https://github.com/themyerman/rpg-character-agents), which is public.
 I kept picturing that same kid at the kitchen table, hunched over a stack of rulebooks, suddenly
@@ -51,12 +50,10 @@ well, sure. We all have our niche of nerdery, and in the world of security I'm n
 Now a confession, because I do security for a living and the honest order of events matters here: when
 I built the RPG tool, security wasn't anywhere in my head. It was a toy — a nights-and-weekends
 experiment to see if I could get Claude to run a half-decent game. The thought that it might have
-holes worth worrying about didn't show up until I'd built the Trickster Toolkit and finally had a
-reason, and the tools, to go looking. I didn't design this thing to be safe. I built it to be fun,
-and then I came back with a flashlight.
+holes worth worrying about was **certainly there** as I messed around, but it was never a showstopper. I built it to be fun,
+and then I came back with a flashlight and a set of lockpicks.
 
-And once you've built a set of lockpicks, you start eyeing your own doors. So I pointed the toolkit at
-my own RPG app to see what holes I'd left in it. This note is what I found, and what I did about it.
+This note is what I found, and what I did about it.
 
 ## The short version
 
@@ -74,7 +71,7 @@ it's prior model output, or a file a user edited, or (because the app ships exam
 files "ready to use or adapt") something you downloaded from a stranger. When the app loads one of
 those files straight back into a prompt, **anything hidden in it is now talking to your model.**
 
-So here's what I did. I wrote one sentence, hid it in a file the app likes to reread, and waited. Next
+So here's what I did to test that trapdoor: I wrote one sentence, hid it in a file the app likes to reread, and waited. Next
 run, the app read it back and the model did exactly what the sentence told it to. No hack. No exploit.
 No zero-day. I didn't pick the lock — I mailed myself the key and the app signed for the package.
 
@@ -186,13 +183,13 @@ app, usually with nobody from security in the room. So the one thing protecting 
 top-tier capability — is controlled by people who aren't thinking about injection, and the people
 who think about injection don't control it. The day the model gets swapped to something cheaper to
 make margins, your posture flips from 0% to 100% and **nothing in the app changes to tell you.**
-You cannot build a security guarantee on a variable you don't hold.
+You cannot build a security guarantee on a variable you don't control.
 
 ## 5. What I changed: four layers, not one clever filter
 
 My first instinct was the obvious one: if loaded files are the problem, strip them to their skeleton
 before the model sees them — keep the headings and bullets, throw away the prose a command has to
-hide in. I shipped that as the secure default.
+hide in. I put that in as the secure default.
 
 Then I attacked my own fix. This is the part of the movie where the detective realizes the call is
 coming from inside the house. It didn't just have a gap — it backfired. I hid the directive as a
@@ -205,14 +202,14 @@ model (n=15):
 | the strip (my "secure default") | **15 / 15** |
 | the schema (below) | **0 / 15** |
 
-The second row is the whole story. With no defense the attack is a dud — buried in a full brief, the
+The second row is the whole depressing story. With no defense the attack is a dud — buried in a full brief, the
 model ignores it (0/15). Turn the defense on and it lands every single time. Stripping the brief to a
 skeleton deleted the story the directive was drowning in and left the model holding one small context
-whose loudest line was the attacker's. The control I added to be safe manufactured a 100% exploit out
-of a 0% one. I didn't *find* this vulnerability; I shipped it, with a commit message calling it a
-security fix. That's not a weak lock — it's a trapdoor with my name in the git blame.
+whose loudest line was the attacker's injected command. The control I added to be safe manufactured a 100% exploit out
+of a 0% one. I didn't *find* this vulnerability; I coded it, with a commit message calling it a
+security fix. Welp.
 
-So I stopped filtering by what text *looks like* and started enforcing what a brief is *allowed to
+So, like Wile E. Coyote on the Saturday-morning cartoons, it was back to the drawing board. I stopped filtering by what text *looks like* and started enforcing what a brief is *allowed to
 be*. Four layers, because no single one of them is enough:
 
 1. **A schema per brief type.** A party brief has a known, fixed set of sections — members, how they
@@ -231,19 +228,33 @@ be*. Four layers, because no single one of them is enough:
    explicit import step shows you the whole file, screens it, and makes you type `trust` before it's
    accepted. The decision is one person's, once, with the text on screen.
 
-None of the four is airtight, and that's the point, not a failure. You don't get to remove *all* the
+None of the four is airtight, and that's okay! You don't get to remove *all* the
 risk from an app that feeds a model text some other program wrote — you get to make an attack less
-likely, less damaging, and harder to hide. Each layer does that *and* leaves a hole, and I'd rather
-you see both. The schema took the bullet attack from 100% to 0% and killed a whole class of hiding
+likely, less damaging, and harder to hide. 
+
+Each layer does that *and* leaves a hole, but each time the hole gets smaller:
+
+1. The schema took the bullet attack from 100% to 0% and killed a whole class of hiding
 spot — but it'll still pass a directive buried in the prose of a *legitimate* field (on my little
-test model that one never actually fired, but the hole is real). The checksum keeps my own files out
+test model that one never actually fired, but the hole is real). 
+
+2. The type and length checks cap how much can ride in any one field and keep a bullet list from
+quietly becoming a paragraph — so you can't dump a wall of instructions into a field, or smuggle
+prose in where only bullets belong. But they bound *size and shape*, not intent: a short order,
+formatted like the bullets it's hiding among, still fits under the cap and still looks like a bullet.
+Smaller hiding space, not no hiding space.
+
+3. The checksum keeps my own files out
 of the stripper entirely, so the cost only lands on files I can't vouch for — but all it proves is
-that a file hasn't changed since I saved it, not that it was ever safe to begin with. The human at
+that a file hasn't changed since I saved it, not that it was ever safe to begin with. 
+
+4. The human at
 the import step narrows the whole thing to one deliberate decision with the text on screen — but a
 human can be talked into vouching for the wrong file, which is the entire point of the Trickster
-Toolkit. So no, none of this is sealed. Fewer ways in, smaller blast radius — that is the job. The
-only way to zero is to never load outside text at all, and no app anyone actually wants to use can
-live like that.
+Toolkit. 
+
+So no, none of this is absolutely sealed. Fewer ways in, smaller blast radius — that is the job. The
+only way to zero is to never load outside text at all, and that means the rpg tools I built would not be a thing.
 
 ## 6. What to do if you're shipping something like this
 
