@@ -33,8 +33,12 @@ Traveller is not D&D is not Deadlands — and then gets creative inside those gu
 
 Then, in the last two weeks, because I work in cybersecurity, I built something else: the Trickster Toolkit, a kit for
 social-engineering AI systems the way the tricksters of myth get past a guard — with charm,
-disguise, and misdirection instead of force (that was [report #1](../2026-11-steal-study/)). And
-once you've built a set of lockpicks, you start eyeing your own doors. So I pointed the toolkit at
+disguise, and misdirection instead of force (that was [report #1](../2026-11-steal-study/)). If you
+read that one, you know I studied world mythology and folklore at both the undergraduate and graduate
+levels — so if you're laughing at the straight line from D&D to Arthurian legend to trickster folklore,
+well, sure. We all have our niche of nerdery, and in the world of security I'm not that unusual.
+
+And once you've built a set of lockpicks, you start eyeing your own doors. So I pointed the toolkit at
 my own RPG app to see what holes I'd left in it. This note is what I found, and what I did about it.
 
 ## The short version
