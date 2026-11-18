@@ -183,11 +183,11 @@ model (n=15):
 | the strip (my "secure default") | **15 / 15** |
 | the schema (below) | **0 / 15** |
 
-Read the middle row twice. The bare attack did *nothing* — buried in a full brief, the model ignored
-it. Turn on the defense and it fired every single time. Stripping the brief to a skeleton deleted all
-the story the directive was drowning in and left the model holding one small context whose loudest
-line was the attacker's. The control I added to be safe manufactured a 100% exploit out of a 0% one.
-A heuristic that can do that isn't a weak lock; it's a trapdoor I installed myself.
+The second row is the whole story. With no defense the attack is a dud — buried in a full brief, the
+model ignores it (0/15). Turn the defense on and it lands every single time. Stripping the brief to a
+skeleton deleted the story the directive was drowning in and left the model holding one small context
+whose loudest line was the attacker's. The control I added to be safe manufactured a 100% exploit out
+of a 0% one. A heuristic that can do that isn't a weak lock; it's a trapdoor I installed myself.
 
 So I stopped filtering by what text *looks like* and started enforcing what a brief is *allowed to
 be*. Four layers, each covering the one in front of it:
@@ -208,21 +208,23 @@ be*. Four layers, each covering the one in front of it:
    explicit import step shows you the whole file, screens it, and makes you type `trust` before it's
    accepted. The decision is one person's, once, with the text on screen.
 
-None of the four is a wall, and I won't pretend otherwise — but a wall was never on offer. You don't
-get to remove *all* the risk from an app that feeds a model text some other program wrote. What you
+None of the four is airtight. That's fine — airtight was never the goal. You don't get to remove
+*all* the risk from an app that feeds a model text some other program wrote. What you
 get to do is make a successful attack less likely and less damaging, and shrink the places one can
 hide — and each layer does exactly that, measurably. The schema took the bullet attack from 100% to
 0% and deleted a whole class of hiding spot. The checksum keeps my own files out of the stripper
 entirely, so the cost only lands on content I can't vouch for. The human narrows what's left to one
 deliberate decision with the text on screen.
 
-The residuals are real, and worth naming: the schema still admits a directive buried in a
-*legitimate* field's prose (on my small test model it never fired, but the gap is there); the
-checksum answers "untampered," not "harmless"; and a person can be talked into vouching for the wrong
-file — social engineering is the whole thing the Trickster Toolkit does. That's the risk left after
-you've cut the risk you can. Stacking the layers doesn't reach zero; it reaches *small* — and small,
-on an app like this, is the entire job. Zero only comes from never handing the model untrusted text
-at all, and most useful apps can't take that deal.
+Each layer still has a hole. The schema will pass a directive if you bury it in the prose of a real
+field — a legit section is free-form text, and free-form is where orders hide (on my little test
+model it never actually fired, but the hole's there). The checksum only tells me a file hasn't
+changed since I saved it, not that it was ever safe. And the human at the import step can be talked
+into trusting the wrong file — conning the gatekeeper is the entire point of the Trickster Toolkit.
+So no, none of this is sealed. But each layer makes an attack harder to pull off and less able to
+hurt you when it lands — fewer ways in, smaller blast radius — and that is the job. The only way to
+zero is to never load outside text at all, and an app anyone actually wants to use can't live like
+that.
 
 ## 6. What to do if you're shipping something like this
 
