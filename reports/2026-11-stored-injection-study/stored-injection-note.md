@@ -24,7 +24,7 @@ I kept picturing the 13-year-old me, hunched over a stack of rulebooks on a Frid
 handed a big creative helper for all the arcana a proper *Dungeons & Dragons* nerd-out requires.
 It generates characters, NPCs (non-player characters — the barkeeps, villains, and quest-givers
 who fill out a game), ships, worlds, encounters, and rumors. Most GMs don't invent this stuff at
-the table — we plan ahead. But sometimes you just need a few ideas seeded, and that's what this
+the table — they plan ahead. But sometimes you just need a few ideas seeded, and that's what this
 tool is meant to help with.
 
 But I didn't want a black-box chat spitting out rumors and NPCs willy-nilly. Heck, I could do that
