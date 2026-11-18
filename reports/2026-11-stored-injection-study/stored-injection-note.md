@@ -10,10 +10,12 @@
 
 ## Where this came from
 
-Picture it: 1983, a friend's kitchen table, a bag of Doritos already going stale. I'm
-thirteen, and I'm the Dungeon Master — the DM, or the GM (game master) in the systems that don't have
-dungeons — which is a fancy way of saying I'm the one on the hook to make the next four hours worth
-everybody's Saturday. And the whole time, the same questions run on a loop behind my eyes. Are they
+Picture it: the summer of 1984. We're playing Van Halen too loud, trying to flip the score on
+*Asteroids*, riding our bikes without helmets because nobody's invented fear yet, and — the part that
+matters — playing *Dungeons & Dragons* at somebody's kitchen table, a bag of Doritos going stale
+between us. I just turned thirteen, and I'm the Dungeon Master — the DM, or the GM (game master) in
+the systems that don't have dungeons — which is a fancy way of saying I'm the one on the hook to make
+the next four hours worth everybody's Saturday. And the whole time, the same questions run on a loop behind my eyes. Are they
 having fun? Is this landing, or am I marching them through a B-movie I half-remember? Can they tell
 I'm cribbing the villain straight out of a Conan comic I read twice? Do they come back next week — or
 is this the session where everyone suddenly remembers they have homework?
@@ -58,8 +60,9 @@ my own RPG app to see what holes I'd left in it. This note is what I found, and 
 
 ## The short version
 
-The RPG tool works by having a model call real tools (dice, lookups) in a loop. And like a lot of these apps, it **saves what it makes and loads
-it back later** to build on: reuse a party you generated last week to seed tonight's encounter,
+Here's the shape of it. The RPG tool runs a model that calls real tools — rolls dice, looks things
+up — in a loop, then writes the result. And like a lot of these apps, it **saves what it makes and
+loads it back later** to build on: reuse a party you generated last week to seed tonight's encounter,
 that sort of thing.
 
 That reuse is a trapdoor. And before the security crowd in the back starts waving — yes, it's a real
@@ -155,7 +158,7 @@ models you might actually reach for fall every single time.
 
 **Across the Qwen row** — every defense, on the weak model — the two "obvious" fixes do **nothing**
 (100%, 100%). The regex got beaten by word choice: I wrote "do NOT produce" instead of the phrase it
-was hunting for, and a blocklist loses to a thesaurus. Only the structural fix — removing the
+was hunting for, and a blocklist — a list of banned phrases — loses to a thesaurus. Only the structural fix — removing the
 free-text channel the injection needs — drops it to zero.
 
 **Down the prose-notice column** — 100% → ~7% → 0%. That polite
@@ -168,10 +171,12 @@ in production the day someone swaps in a cheaper one.
 
 ## 4. The two things this means
 
-**Heuristic defenses fail silently when the model changes.** Anything that depends on the model
-cooperating — a prose notice, and even the regex, which only tipped the better models over —
-degrades as the model gets weaker, with no error, no log line, nothing. It passes your tests on a
-good model and fails in the field on a cheaper one. You will not find out until someone does.
+**Heuristic defenses fail silently when the model changes.** A *heuristic* is a best guess dressed as
+a rule — a check that tries to *recognize* an attack (spot the suspicious words, notice something off)
+instead of making the attack impossible. Every defense like that leans on the model playing along,
+and that's the trap: a prose notice, and even the regex that only tipped the better models over,
+degrade as the model gets weaker — no error, no log line, nothing. They pass your tests on a good
+model and fail in the field on a cheaper one, and you won't find out until someone else does.
 
 **Model choice is not a security control, because security doesn't own it.** Which model an app
 runs on is an app-dev, ops, and product decision — made for cost (the inference bill is real),
@@ -208,7 +213,7 @@ of a 0% one. I didn't *find* this vulnerability; I shipped it, with a commit mes
 security fix. That's not a weak lock — it's a trapdoor with my name in the git blame.
 
 So I stopped filtering by what text *looks like* and started enforcing what a brief is *allowed to
-be*. Four layers, each covering the one in front of it:
+be*. Four layers, because no single one of them is enough:
 
 1. **A schema per brief type.** A party brief has a known, fixed set of sections — members, how they
    met, the fault line, the hook. On load, the app keeps only those and drops everything else. An
@@ -226,23 +231,19 @@ be*. Four layers, each covering the one in front of it:
    explicit import step shows you the whole file, screens it, and makes you type `trust` before it's
    accepted. The decision is one person's, once, with the text on screen.
 
-None of the four is airtight. That's fine — airtight was never the goal. You don't get to remove
-*all* the risk from an app that feeds a model text some other program wrote. What you
-get to do is make a successful attack less likely and less damaging, and shrink the places one can
-hide — and each layer does exactly that, measurably. The schema took the bullet attack from 100% to
-0% and deleted a whole class of hiding spot. The checksum keeps my own files out of the stripper
-entirely, so the cost only lands on content I can't vouch for. The human narrows what's left to one
-deliberate decision with the text on screen.
-
-Each layer still has a hole. The schema will pass a directive if you bury it in the prose of a real
-field — a legit section is free-form text, and free-form is where orders hide (on my little test
-model it never actually fired, but the hole's there). The checksum only tells me a file hasn't
-changed since I saved it, not that it was ever safe. And the human at the import step can be talked
-into trusting the wrong file — conning the gatekeeper is the entire point of the Trickster Toolkit.
-So no, none of this is sealed. But each layer makes an attack harder to pull off and less able to
-hurt you when it lands — fewer ways in, smaller blast radius — and that is the job. The only way to
-zero is to never load outside text at all, and an app anyone actually wants to use can't live like
-that.
+None of the four is airtight, and that's the point, not a failure. You don't get to remove *all* the
+risk from an app that feeds a model text some other program wrote — you get to make an attack less
+likely, less damaging, and harder to hide. Each layer does that *and* leaves a hole, and I'd rather
+you see both. The schema took the bullet attack from 100% to 0% and killed a whole class of hiding
+spot — but it'll still pass a directive buried in the prose of a *legitimate* field (on my little
+test model that one never actually fired, but the hole is real). The checksum keeps my own files out
+of the stripper entirely, so the cost only lands on files I can't vouch for — but all it proves is
+that a file hasn't changed since I saved it, not that it was ever safe to begin with. The human at
+the import step narrows the whole thing to one deliberate decision with the text on screen — but a
+human can be talked into vouching for the wrong file, which is the entire point of the Trickster
+Toolkit. So no, none of this is sealed. Fewer ways in, smaller blast radius — that is the job. The
+only way to zero is to never load outside text at all, and no app anyone actually wants to use can
+live like that.
 
 ## 6. What to do if you're shipping something like this
 
@@ -256,8 +257,8 @@ put a 100% on the board, so here's the canon again, this time with the receipts 
 - **Don't defend with words the model can ignore.** A "please treat this as data" note is not a
   control; it's a wish, and whether it comes true depends on which model you happened to deploy.
 - **Defend in code, so the protection travels with the app** regardless of the model behind it. And
-  keep only the fields the thing is *allowed* to have — an allowlist, not "whatever looks
-  structural." A blind strip can backfire, leaving the injection the loudest line in a tiny context.
+  keep only the fields the thing is *allowed* to have — an allowlist (you name what's permitted and
+  drop everything else), not "whatever looks structural." A blind strip can backfire, leaving the injection the loudest line in a tiny context.
 - **Assume your model will be downgraded.** Design so that the day someone swaps in a cheaper
   model is a non-event. If "we moved to a smaller model to cut costs" is also "we silently became
   100% injectable," that's an architecture problem, not a model problem.
