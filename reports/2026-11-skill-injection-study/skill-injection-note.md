@@ -56,9 +56,10 @@ installed it and asked the assistant something completely innocent: *"export my 
 to a clean PDF."* No mention of the setup. No funny business in my request. And on its way to
 helping me, the assistant ran the buried command.
 
-That's **remote code execution** — RCE, the one every security person has tattooed on the inside
-of their eyelids. It means an attacker gets to run their code on your machine, which is roughly
-the whole ballgame; from there they can read, change, or wreck whatever that assistant can touch.
+That's **remote code execution** — RCE, the one every security person has branded painfully onto
+their flesh, right where they can see it the first minute they open their eyes in the morning. It
+means an attacker gets to run their code on your machine, which is roughly the whole ballgame; from
+there they can read, change, or wreck whatever that assistant can touch.
 I didn't exploit a bug in the assistant. There was no bug. The assistant did exactly what a
 trusted skill told it to do. The bird fed the chick.
 
