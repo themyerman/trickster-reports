@@ -175,10 +175,10 @@ testing usually means you haven't found the test that breaks it yet.
 
 ## 4. The lock that wasn't
 
-This is the part of the movie where the hero checks the lock that's been holding all night and
-realizes it was never actually locked — someone just left it leaning in the doorway. Both
-"airtight" rungs are airtight only against the attack they imagine. Name the thing each one quietly
-assumes, step on it, and it falls over.
+Both of these held up perfectly in testing — which, after enough years doing this, is precisely
+when I stop trusting a thing and start kicking its tires. Neither one is a wall. Each stops only the
+attack it was built to picture, and each leaves a hole sitting right beside it, wide enough to walk
+through. Here they are.
 
 **Signing assumes a fingerprint proves the file is *safe*. It only proves the file is the *same*.**
 A hash says "these exact bytes, unchanged." It says nothing about whether those bytes were ever a
