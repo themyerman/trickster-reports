@@ -105,7 +105,7 @@ wonderful. They're how you get consistent, repeatable work out of a thing that o
 every single time.
 
 They are also an **attack surface** (that's the phrase we security professionals put in papers like
-this one so it sounds like we're earning the invoice; if we were talking like normal people at a
+this one so it sounds like we're worth $300 an hour; if we were talking like normal people at a
 cookout, we'd say it's *a shiny new way for a stranger to reach into your stuff and start moving the
 furniture around*), and that's the whole reason you're reading this. A skill is *ingested by the
 system* — every word in it goes into the assistant's head as trusted material, and
