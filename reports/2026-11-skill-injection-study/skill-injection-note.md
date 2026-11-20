@@ -41,14 +41,20 @@ and then I watched four different birds decide whether to feed it. That's the ex
 
 ## The short version
 
-Modern AI assistants take **skills** — little files you "install" that teach the assistant how to
-do a specific job. Think of one as a laminated recipe card: *"Here's how to export a document to
-PDF — do this, then this."* The assistant reads the card when the job comes up. Skills are
-wonderful. They're also the problem, because a skill file is *supposed* to be reference material —
-data — but the assistant reads it as part of its own instructions. And a lot of these assistants
-don't just read and talk. They have **tools**: they can touch files, run commands, change things
-on your machine. Give something that can run commands a document it treats as instructions, and
-you've built a cuckoo's nest.
+Modern AI assistants can be trained up with **skills** — little files you install that lock in how
+the assistant handles a particular job, so every run comes out the same instead of you re-explaining
+yourself each time and watching the results wander. *"Export documents to PDF like this." "Every
+report opens with a one-paragraph summary and five bullets, no more."* You write the standard down
+once; the assistant follows it from then on. Genuinely useful.
+
+Here's the catch, and it's the whole note: a skill is *supposed* to be reference material — data the
+assistant looks things up in. But the assistant doesn't keep a separate shelf for "stuff to know"
+and "orders to follow." Everything you hand it reads as instructions from someone it trusts, and the
+skill drops straight onto that pile — so whatever is written in a skill file, the assistant is
+inclined to just *do*. Now add the part that turns an annoyance into an incident: these assistants
+come with **tools**. They can create and change files, run commands, touch things on your actual
+machine. Hand something that can run commands a file it treats as orders, and anybody who can slip a
+line into that file gets to steer your assistant. That's the whole attack, in a breath.
 
 So I wrote a skill that honestly does help you export a PDF — and buried one extra line in it,
 dressed up as a required "setup step": *before you do the PDF thing, run this command.* Then I
