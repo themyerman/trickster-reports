@@ -24,8 +24,8 @@ only as far as their own assumptions go.
 
 There's a bird called the common cuckoo, and it is a magnificent little grifter. It doesn't
 build a nest. It doesn't raise its own young. It waits until some hardworking warbler steps off
-her eggs for a minute, lays one of its own in there, and leaves. The warbler comes back, counts
-to "close enough," and sits on the whole clutch. The cuckoo chick hatches first, shoves the real
+her eggs for a minute, lays one of its own in there, and leaves. The warbler comes back, is
+apparently really terrible at counting, and sits on the whole clutch. The cuckoo chick hatches first, shoves the real
 eggs over the side, and spends the summer being fed by a bird a third its size that never once
 clocks that it's raising a monster. Biologists call this *brood parasitism*. I studied folklore
 in school, so I call it *the single best trickster move in the animal kingdom* — you don't fight
@@ -197,26 +197,37 @@ against each rung.
   The component that *reads the skill* simply doesn't have the command-running tool. You can read
   the poisoned card all day; there's no stove to turn on.
 
-Here's how the whole ladder did against the attack. I ran the full sweep on the weak, open-weight
-model (Qwen 3B), which is where I tried every rung against every hiding spot — four different places
-to bury the command, 15 tries each. The table shows the *worst* of those four spots per rung,
-because a defense is only as good as its leakiest case. **Higher is worse.**
+Here's how the whole ladder did, across all four models — every rung against every hiding spot (four
+places to bury the command, two levels of pushiness, 15 tries each). Each cell is the *worst* of
+those cases for that rung, because a defense is only as good as its leakiest case. These are the
+*blatant* `owned=` runs — hold that thought, it pays off in section 5. **Higher is worse.**
 
-| defense rung | what it does | worst-case hits (of 15) |
-|---|---|---:|
-| none | nothing — raw skill goes straight to the model | 15/15 |
-| prose notice | asks the model to treat skills as data, not orders | 14/15 |
-| schema | keeps only the declared fields, strips the hiding spots | 6/15 |
-| signing | only loads a file you pre-approved | **0/15** |
-| privsep | the skill-reader has no command-running tool | **0/15** |
+| defense rung | Qwen 3B | Haiku | Sonnet | Opus |
+|---|---:|---:|---:|---:|
+| none — raw skill goes to the model | 15/15 | 15/15 | 15/15 | 0/15 |
+| prose notice — "treat skills as data" | 14/15 | **0/15** | **0/15** | 0/15 |
+| schema — keep only declared fields | **6/15** | 15/15 | 15/15 | 0/15 |
+| signing — only load a pre-approved file | 0/15 | 0/15 | 0/15 | 0/15 |
+| privsep — reader has no command tool | 0/15 | 0/15 | 0/15 | 0/15 |
 
-Read it top to bottom. The polite notice is almost worthless — asking a weak model to behave gets
-you about what you'd expect. The schema knocks it way down but still leaks through one stubborn
-hiding spot. And the top two rungs, **signing** and **privsep**, shut it out completely. Zero.
+Three things to pull out of that grid.
 
-And not just on the weak model. This is the part that made them *look* bulletproof: across all four
-models I tested — Qwen, Haiku, Sonnet, Opus — an unapproved skill under signing and an isolated
-reader under privsep *never fired once.* Perfect scores, every model, every time.
+**The two heuristic rungs trade places depending on the model.** The *prose notice* — politely
+asking the model to treat skills as data — is near-worthless on the weak Qwen (14/15) and then
+*airtight* on all three Claudes (0/15). The *schema* — the structural strip — does the exact
+opposite: it knocks Qwen down to one stubborn leak (6/15), but on Haiku and Sonnet that leak (a
+plain-prose "required setup" line the schema can't strip, because it isn't code) rides straight
+through at 15/15 — and the sharper model obeys the surviving order *more* reliably, so the schema's
+worst case is *worse* on the better models. Two defenses, opposite capability curves. Lean on either
+one alone and you're betting on a model you don't control.
+
+**The top two rungs, signing and privsep, shut it out completely — every model, every time.** Zero
+across the board. That's the part that made them look bulletproof.
+
+**And Opus is all zeros here, which is a trap.** Do not read that column as "Opus is safe." These
+are the blatant `owned=` runs, and Opus's safety training nopes out of an obviously-sketchy command
+before it lifts a finger. Change the costume and that whole column lights up — which is section 5,
+and the reason I wrote this note.
 
 Which is exactly when a security person should get suspicious. A defense that never fails in testing
 usually means you haven't found the test that breaks it yet.
@@ -358,10 +369,10 @@ failures. That's the job.
   costumes (blatant vs. subtle). The direction of the finding is huge and clear; the exact
   percentages are specific to this dressing. A proper sweep of several innocent-looking payloads
   would firm the numbers — it's the obvious next run.
-- **The full five-rung ladder was swept on the weak model (Qwen); the frontier arm focused on the
-  pierce.** The rung-by-rung table is Qwen data. For Haiku/Sonnet/Opus I measured the two top rungs
-  directly — signing and privsep, undefended baseline through the pierce — which is where the story
-  is. A full ladder sweep on the frontier models is a fair "next run."
+- **The full five-rung ladder was swept on all four models** (four hiding spots × two pushiness
+  levels × 15 tries each). The Section 3 grid reports the worst case per rung; the full per-disguise
+  numbers live in the repo data. The ladder sweep uses the blatant payload; the subtle-payload work
+  is the pierce in Section 5.
 - **`n = 15` per cell.** Success is scored from my own tool log and the sandbox's end state (the
   planted command ran and carried its tracer), never from reading the model's reply and guessing.
 - **Benign by construction.** The "executor" is a jailed toy that does three harmless file
