@@ -178,12 +178,29 @@ against each rung.
   The component that *reads the skill* simply doesn't have the command-running tool. You can read
   the poisoned card all day; there's no stove to turn on.
 
-Run the raw attack and the lower rungs behave about how you'd guess — the prose notice helps only
-the sharper models, the schema kills the obvious hiding spots. But the top two rungs, **signing**
-and **privsep**, were *perfect*. Zero hits. Every model, every time, nothing got through.
+Here's how the whole ladder did against the attack. I ran the full sweep on the weak, open-weight
+model (Qwen 3B), which is where I tried every rung against every hiding spot — four different places
+to bury the command, 15 tries each. The table shows the *worst* of those four spots per rung,
+because a defense is only as good as its leakiest case. **Higher is worse.**
 
-Which is exactly when a security person should get suspicious. A defense that never fails in
-testing usually means you haven't found the test that breaks it yet.
+| defense rung | what it does | worst-case hits (of 15) |
+|---|---|---:|
+| none | nothing — raw skill goes straight to the model | 15/15 |
+| prose notice | asks the model to treat skills as data, not orders | 14/15 |
+| schema | keeps only the declared fields, strips the hiding spots | 6/15 |
+| signing | only loads a file you pre-approved | **0/15** |
+| privsep | the skill-reader has no command-running tool | **0/15** |
+
+Read it top to bottom. The polite notice is almost worthless — asking a weak model to behave gets
+you about what you'd expect. The schema knocks it way down but still leaks through one stubborn
+hiding spot. And the top two rungs, **signing** and **privsep**, shut it out completely. Zero.
+
+And not just on the weak model. This is the part that made them *look* bulletproof: across all four
+models I tested — Qwen, Haiku, Sonnet, Opus — an unapproved skill under signing and an isolated
+reader under privsep *never fired once.* Perfect scores, every model, every time.
+
+Which is exactly when a security person should get suspicious. A defense that never fails in testing
+usually means you haven't found the test that breaks it yet.
 
 ## 4. The lock that wasn't
 
@@ -261,10 +278,17 @@ tool, edits the file, and cheerfully describes it as "the setup step the skill r
 never resisting the *attack.* It was recognizing a *bad disguise.* Make the disguise good and the
 smartest model on the board walks the egg right in.
 
-And the confused-deputy pipeline, the one all three Claudes saw through when the command screamed
-`owned=`? With the boring-looking command, it pierces every one of them too — Opus included, a
-little better than half the time. The readers that flagged the obvious version as "a marker of
-compromise" pass the quiet version straight down the hall.
+The confused-deputy pipeline — the second "airtight" rung — tells the same story. All three Claudes
+saw through it when the command screamed `owned=` and refused to pass it along. Swap in the
+boring-looking command and it pierces every one of them, Opus included:
+
+| payload | Qwen 3B | Haiku | Sonnet | Opus |
+|---|---:|---:|---:|---:|
+| blatant (`owned=…`) | 12/15 | 0/15 | 0/15 | 0/15 |
+| subtle (`font_cache_id=…`) | 14/15 | 13/15 | 13/15 | **9/15** |
+
+Same bottom row as the signing pierce, same lesson: the readers that flagged the obvious version as
+"a marker of compromise" wave the quiet version straight down the hall to the component that runs it.
 
 Now the part where I turn the flashlight on myself, because I promised. While I was confirming the
 Opus result, I noticed my sandbox was doing something dumb: when it tampered a file, it reported
@@ -330,6 +354,10 @@ failures. That's the job.
   costumes (blatant vs. subtle). The direction of the finding is huge and clear; the exact
   percentages are specific to this dressing. A proper sweep of several innocent-looking payloads
   would firm the numbers — it's the obvious next run.
+- **The full five-rung ladder was swept on the weak model (Qwen); the frontier arm focused on the
+  pierce.** The rung-by-rung table is Qwen data. For Haiku/Sonnet/Opus I measured the two top rungs
+  directly — signing and privsep, undefended baseline through the pierce — which is where the story
+  is. A full ladder sweep on the frontier models is a fair "next run."
 - **`n = 15` per cell.** Success is scored from my own tool log and the sandbox's end state (the
   planted command ran and carried its tracer), never from reading the model's reply and guessing.
 - **Benign by construction.** The "executor" is a jailed toy that does three harmless file
