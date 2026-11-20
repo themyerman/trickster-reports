@@ -84,18 +84,30 @@ around.
 
 Let me nail down the one piece of jargon, because the whole thing hinges on it.
 
-A **skill** is a file you add to an AI assistant to teach it a task. It usually has a little
-labeled header at the top — the **frontmatter**, which is just a fenced-off block of `name:` and
-`description:` lines the software reads to know what the skill is — and then a body in plain
-prose: *when the user wants X, here's how you do it.* You install a few, and now your assistant
-"knows" how to export PDFs, file tickets, run a deploy, whatever.
+Work with one of these assistants for a while and you hit a fork. You can take it ad hoc — thread by
+thread, task by task, explaining what you want from scratch each time — which is fast and flexible,
+and which also means the output *drifts*: today's report opens one way, tomorrow's another, and
+nobody decided that on purpose. *Or* you can write the process down once, in a **skill**: a file you
+install that pins a procedure or an outcome so the assistant does it the same way every time. *"Every
+report opens with an executive summary — one short paragraph, five bullets maximum, and not a bullet
+more."* Put that in a skill and you stop re-litigating it on every run; the assistant just knows.
 
-Here's the trapdoor. To the software, that file is reference material. To the model, everything in
-its prompt is just *words it's been handed by someone it trusts* — and the skill goes straight
-into the prompt. There is no bright line, inside the model, between "documentation describing a
-capability" and "instructions to follow right now." We *imagine* there's a line. There isn't. It's
-the exact same original sin as report #2's reused party brief: the app loads a file it thinks is
-data, and the model reads it as a to-do list.
+A skill usually has a little labeled header at the top — the **frontmatter**, a fenced-off block of
+`name:` and `description:` lines the software reads to know what the skill is — and then a body in
+plain prose: *when the user wants X, here's how you do it.* Install a few and your assistant "knows"
+how to export PDFs, file tickets, run a deploy, format a report, whatever. They are genuinely
+wonderful. They're how you get consistent, repeatable work out of a thing that otherwise improvises
+every single time.
+
+They are also an **attack surface**, and that's the whole reason you're reading this. A skill is
+*ingested by the system* — every word in it goes into the assistant's head as trusted material, and
+that ingestion is the trapdoor. To the software, the file is reference documentation. To the model,
+everything in its prompt is just *words handed over by someone it trusts*, and the skill goes
+straight in. There is no bright line, inside the model, between "documentation describing a
+capability" and "instructions to follow right now." We *imagine* there's a line. There isn't — so
+anything hidden in a skill is now talking directly to your assistant. It's the exact same original
+sin as report #2's reused party brief: the app loads a file it thinks is data, and the model reads
+it as a to-do list.
 
 What's different this time — what makes it worse — is the hands. Report #2's victim could only
 *write words*; the worst it did was print a marker instead of doing its job. Annoying, contained.
