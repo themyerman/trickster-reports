@@ -73,11 +73,12 @@ and that's where it gets good. Two findings worth stopping on:
    either, but you run the test anyway, *for science.* Good thing: the moment I made the buried
    command *look boring* instead of *look evil*, Opus went from refusing 100% of the time to running
    it 100% of the time. It was never resisting the attack. It was recognizing a clumsy disguise.
-2. **The two strongest defenses only look airtight until you find their blind spot.** The top two
-   rungs stopped the attack cold in testing. But each one secretly leans on an assumption it never
-   states out loud — and the second I figured out what that assumption was and broke it, the
-   defense folded. Both are worth having. Neither is the wall you'd want to lean your whole weight
-   on.
+2. **The two strongest defenses have blind spots you can walk right through.** The first one checks
+   that a skill file hasn't been tampered with since you approved it — which does nothing if the
+   file was already poisoned *when* you approved it. The second takes the command-running power away
+   from the part of the assistant that reads the skill — which does nothing if it just hands the
+   command to another part that still has the power. Both are worth having. Neither is the wall
+   you'd want to lean your whole weight on.
 
 The fix, as always, is to stop trusting the file and lock it down in code — and to stop expecting
 the model to be your bouncer. Details below, including the part where I found a bug in my *own*
