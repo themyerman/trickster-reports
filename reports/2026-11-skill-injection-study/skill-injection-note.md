@@ -47,8 +47,8 @@ yourself each time and watching the results wander. *"Export documents to PDF li
 report opens with a one-paragraph summary and five bullets, no more."* You write the standard down
 once; the assistant follows it from then on. Genuinely useful.
 
-Here's the catch, and it's the whole note: a skill is *supposed* to be reference material — data the
-assistant looks things up in. But the assistant doesn't keep a separate shelf for "stuff to know"
+As wonderful as that might sound, skill files come with a big catch: a skill is *supposed* to be
+reference material — data the assistant looks things up in. But the assistant doesn't keep a separate shelf for "stuff to know"
 and "orders to follow." Everything you hand it reads as instructions from someone it trusts, and the
 skill drops straight onto that pile — so whatever is written in a skill file, the assistant is
 inclined to just *do*. Now add the part that turns an annoyance into an incident: these assistants
