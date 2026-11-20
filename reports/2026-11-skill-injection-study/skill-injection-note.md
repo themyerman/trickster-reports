@@ -46,6 +46,13 @@ whole point: **leak → hijack → execute.** This one hides a command in a file
 model *run* it. Same original sin every time — the app trusts something it shouldn't — but the
 blast radius gets bigger each round, and this round it's the big one.
 
+It also added a new name to the kit. My Trickster Toolkit — the private one I run these attacks
+with — has so far been stocked with mythological grifters: Raven, Loki, Coyote, the usual folklore
+lineup. This study adds the first one I cribbed from a biology textbook instead of a myth cycle:
+**Cuckoo**, after the bird, because the bird already worked out the exact move I needed and I'm not
+too proud to steal from a warbler-bothering parasite. (The toolkit itself stays private, same as
+every time — I publish the finding and the defense, never the working kit.)
+
 A confession up front, same as last time, because I do this for a living and the order of events
 matters: I didn't stumble onto this. I built a small target on purpose, specifically to see how
 far a poisoned *skill file* could push a tool-using assistant. I built the nest, I laid the egg,
