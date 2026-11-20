@@ -1,6 +1,6 @@
-# The Cuckoo's Egg: Smuggling Code Execution into an AI Assistant Through Its Own Skill Files
+# The Cuckoo's Egg: Remote Code Execution Through an AI Assistant's Own Skill Files
 
-### Skill-file injection, RCE, and why "a smart model will catch it" is a mirage
+### Poison a skill file, run attacker code on the machine — and why "a smart model will catch it" is a mirage
 
 **Thomas Myer** · myerman@gmail.com
 
