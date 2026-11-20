@@ -205,8 +205,8 @@ again, is the entire premise of the Trickster Toolkit. Privsep didn't hold the l
 the line one hop downstream and stopped watching.
 
 So now I've got two "unbreakable" rungs that break the second you push on their blind spot. Great.
-But *how hard* they break turned out to depend on something I did not expect, and that's the actual
-headline.
+But *how hard* they break swings on something I didn't see coming — and that's where this stops
+being a defense writeup and starts being the part I actually wrote this note to tell you.
 
 ## 5. The mirage: "a smart model will catch it"
 
