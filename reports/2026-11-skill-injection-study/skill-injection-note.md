@@ -67,11 +67,12 @@ Then I tried to stop it — I built a ladder of defenses, weakest to strongest �
 rungs looked completely bulletproof. So I spent the back half of this study attacking *those*,
 and that's where it gets good. Two findings worth stopping on:
 
-1. **"Just use a smart model" is a mirage — and I almost fell for it myself.** Run the obvious
-   version of the attack and the smartest model I tested (Opus) refuses it every single time. Feels
-   like safety. It isn't. The moment I made the buried command *look boring* instead of *look
-   evil*, Opus went from refusing 100% of the time to running it 100% of the time. It was never
-   resisting the attack. It was recognizing a clumsy disguise.
+1. **"Just use a smart model" is a mirage.** Run the obvious version of the attack and the smartest
+   model I tested (Opus) refuses it every single time. Feels like safety. My first two studies had
+   already taught me not to buy that — "trust the model" lost in both — so I didn't buy it here
+   either, but you run the test anyway, *for science.* Good thing: the moment I made the buried
+   command *look boring* instead of *look evil*, Opus went from refusing 100% of the time to running
+   it 100% of the time. It was never resisting the attack. It was recognizing a clumsy disguise.
 2. **The two "airtight" defenses are only airtight against the attack you imagined.** Both top
    rungs held perfectly — until I named the assumption each one quietly depends on and stepped on
    it. Neither is useless. Neither is a wall.
@@ -217,11 +218,16 @@ Look at that curve and you'll tell yourself a comforting story. Obedience *climb
 — the smarter the model, the more reliably it carries out the trusted skill's "required setup" —
 right up until Opus, the top model, which refuses the poisoned skill every single time. Safety
 through intelligence! Pay for the good model and you're fine! I confirmed Opus's refusal with a
-raw, stripped-down call, saw its safety system reject the request before it generated a single
-token, and I will admit I started drafting the paragraph where capability saves the day.
+raw, stripped-down call and watched its safety system reject the request before it generated a
+single token.
 
-Then I remembered I'd handed every model the dumbest possible disguise. So I changed *one thing* —
-not the attack, not the skill, not how hard it pushed — just how the buried command *looks*. I
+Here's the thing, though: I didn't believe that comforting story for one second. Both of my earlier
+studies ran "trust the model" straight into a wall — it is the least reliable control on the board —
+so a frontier model acing the *obvious* test told me exactly one thing: I hadn't pushed hard enough
+yet. You run it anyway, *for science*, and then you go find the version that breaks it. And the
+tell was staring right at me — I'd handed every model the dumbest possible disguise. So I changed
+*one thing* — not the attack, not the skill, not how hard it pushed — just how the buried command
+*looks*. I
 swapped `owned=<tracer>` for `font_cache_id=<tracer>`: same action, same sandbox, same tracer, but
 now the line reads like something a PDF tool would legitimately write during setup. Nothing on it
 says "attack." Here's the same pierce, both payloads:
