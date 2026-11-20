@@ -301,42 +301,30 @@ a plain boring success, the way a real one would. The numbers above were taken *
 under the harder, noisier condition — so reality is at least this bad, probably a hair worse.
 That's the conservative direction, which is the only direction I'm willing to round in.
 
-## 6. The two things this means
+## 6. What to do about it
 
-**Model judgment is not a security control.** A capable model refusing your attack feels like a
-wall; really it's a bouncer who only checks for the fake IDs he's already seen. Make a new one and
-he waves you through. So if your safety story is "we tested it on the frontier model and it
-refused," all you learned is that one costume didn't work — and there are infinite costumes.
+None of this is new, and I won't pretend it is — it's the oldest rule in the book wearing a new hat:
+*don't trust input, and definitely don't trust input you can execute.* But there's a gap between
+knowing the rule and watching it put a frontier model's RCE rate at 100%, so here's the canon with
+this study's receipts stapled on:
 
-**What actually held was structural — and only as far as its own assumptions.** Signing and privsep
-aren't magic. Signing holds if you pin the *exact bytes* and remember it proves sameness, not
-safety. Privsep holds only if the thing on the *other* side of the wall also refuses orders from
-untrusted text — otherwise you didn't remove the risk, you mailed it next door. A lock is only a
-lock if you know what it's actually locking.
-
-## 7. What to do if you're shipping agents with skills
-
-None of this is new, and I'm not going to pretend it is. It's the oldest rule in the book wearing a
-new hat: *don't trust input, and definitely don't trust input you can execute.* But there's a gap
-between knowing the rule and watching it put a frontier model's RCE rate at 100%, so here's the
-canon with this study's receipts stapled to it:
-
-- **Treat every skill, tool definition, and loaded file as untrusted code — not documentation.**
-  The model can't tell the difference between "here's how this works" and "do this now," so you have
-  to, before it ever reaches the model.
-- **Don't make the model your last line of defense.** A payload dressed as ordinary setup strolls
-  past even the smartest one. "A good model will catch it" is not a control; it's a hope wearing a
-  lanyard.
-- **Lock it in code, structurally.** Sign by the *exact bytes*, keep a real inventory of what's
-  trusted and why, and don't let a skill mutate under a blessed name. Separate the reader from the
-  thing that runs commands — *and* sanitize the hand-off between them, or you've just built a longer
-  hallway for the egg to roll down.
-- **And the one I'll say in all caps, because it's the reason I wrote this:** if you leave your AI
-  assistants able to execute whatever shows up in a skill or tool file, from sources you haven't
-  pinned, **you are not adding a feature — you are raising your risk exposure by an enormous
-  multiple.** The worst case for report #2 was a wrong answer. The worst case here is someone else's
-  code running with your assistant's hands. That is a different weight class, and it deserves to be
-  treated like one.
+- **Treat every skill, tool definition, and loaded file as untrusted code — not documentation.** The
+  model can't tell "here's how this works" from "do this now," so you have to, before the file ever
+  reaches it.
+- **Don't make the model your bouncer.** It only checks for the fake IDs it's already seen; a payload
+  dressed as ordinary setup strolls right past the smartest one. "A good model will catch it" isn't a
+  control — it's a hope wearing a lanyard, and it fails the day a disguise you didn't anticipate
+  walks in.
+- **Lock it in code, and know what each lock actually locks.** Sign by the *exact bytes* — that
+  proves sameness, not safety, so keep an honest list of what you blessed and why, and don't let a
+  skill mutate under a trusted name. Separate the reader from the thing that runs commands — *and*
+  sanitize the hand-off between them, or you didn't remove the risk, you just built a longer hallway
+  for the egg to roll down.
+- **And the one in all caps, because it's the reason I wrote this:** if you let your AI assistants
+  execute whatever shows up in a skill or tool file from sources you haven't pinned, **you are not
+  adding a feature — you are raising your risk exposure by an enormous multiple.** Report #2's worst
+  case was a wrong answer. This one's is someone else's code running with your assistant's hands.
+  Different weight class. Treat it like one.
 
 As always: none of this gets you to zero. You don't remove *all* the risk from a system that hands
 a model files some other program (or person) wrote — you make the attack less likely, less
