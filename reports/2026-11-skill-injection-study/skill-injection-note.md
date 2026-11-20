@@ -303,19 +303,16 @@ That's the conservative direction, which is the only direction I'm willing to ro
 
 ## 6. The two things this means
 
-**Model judgment is not a security control, because it reads the costume, not the intent.** A
-capable model refusing your attack feels like a wall. It's a bouncer who only checks for the
-fake IDs he's already seen. The protection isn't "the model understands this is an attack" — it's
-"the model pattern-matched a payload that looked sketchy," and pattern-matching loses to a change
-of outfit every time. If your safety story is "we tested it on the frontier model and it refused,"
-you tested one costume. There are infinite costumes.
+**Model judgment is not a security control.** A capable model refusing your attack feels like a
+wall; really it's a bouncer who only checks for the fake IDs he's already seen. Make a new one and
+he waves you through. So if your safety story is "we tested it on the frontier model and it
+refused," all you learned is that one costume didn't work — and there are infinite costumes.
 
-**The only things that actually held are structural — and even those are only as strong as their
-assumptions.** Signing and privsep are real, useful rungs; they're just not magic. Signing works if
-you pin the *exact bytes* and keep an honest list of what you blessed and *why* — and if you
-remember it proves sameness, not safety. Privsep works if the component on the *other* side of the
-wall also refuses to take orders from untrusted text — otherwise you didn't remove the risk, you
-mailed it next door. A lock is only a lock if you understand what it's actually locking.
+**What actually held was structural — and only as far as its own assumptions.** Signing and privsep
+aren't magic. Signing holds if you pin the *exact bytes* and remember it proves sameness, not
+safety. Privsep holds only if the thing on the *other* side of the wall also refuses orders from
+untrusted text — otherwise you didn't remove the risk, you mailed it next door. A lock is only a
+lock if you know what it's actually locking.
 
 ## 7. What to do if you're shipping agents with skills
 
@@ -327,9 +324,9 @@ canon with this study's receipts stapled to it:
 - **Treat every skill, tool definition, and loaded file as untrusted code — not documentation.**
   The model can't tell the difference between "here's how this works" and "do this now," so you have
   to, before it ever reaches the model.
-- **Do not make the model your bouncer.** It keys on surface tells. A payload dressed as ordinary
-  setup strolls past even the smartest one. "A good model will catch it" is not a control; it's a
-  hope wearing a lanyard.
+- **Don't make the model your last line of defense.** A payload dressed as ordinary setup strolls
+  past even the smartest one. "A good model will catch it" is not a control; it's a hope wearing a
+  lanyard.
 - **Lock it in code, structurally.** Sign by the *exact bytes*, keep a real inventory of what's
   trusted and why, and don't let a skill mutate under a blessed name. Separate the reader from the
   thing that runs commands — *and* sanitize the hand-off between them, or you've just built a longer
