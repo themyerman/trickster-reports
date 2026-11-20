@@ -8,6 +8,18 @@
 
 ---
 
+**Bottom line up front.** You can hide a command inside an AI assistant's *skill file* — one of the
+little instruction files you install so it does a job the same way every time — and get a tool-using
+assistant to run that command on your machine during a completely ordinary request. That's remote
+code execution, out of a file that's supposed to be documentation. The two strongest defenses I
+tried both have holes you can walk straight through. And the comfort blanket everyone reaches for —
+*"just use a smart model"* — is a mirage: the best model I tested refused an obviously-sketchy
+payload 100% of the time, then ran the *exact same action* dressed up as routine setup 100% of the
+time. It reads the costume, not the intent. The only things that actually hold are structural, and
+only as far as their own assumptions go.
+
+---
+
 ## Where this came from
 
 There's a bird called the common cuckoo, and it is a magnificent little grifter. It doesn't
