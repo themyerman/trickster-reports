@@ -41,8 +41,6 @@ and then I watched four different birds decide whether to feed it. That's the ex
 
 ## The short version
 
-Here's the shape of it.
-
 Modern AI assistants take **skills** — little files you "install" that teach the assistant how to
 do a specific job. Think of one as a laminated recipe card: *"Here's how to export a document to
 PDF — do this, then this."* The assistant reads the card when the job comes up. Skills are
