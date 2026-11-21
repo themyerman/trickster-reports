@@ -343,23 +343,23 @@ had pictures: *don't trust input, and really don't trust input you can run.* Wha
 isn't the rule — it's watching a frontier model blow straight past it to a 100% RCE rate. So, in
 practice:
 
-- **Treat every skill, tool definition, and loaded file as untrusted code — not documentation.** The
-  model can't tell "here's how this works" from "do this now," so you have to, before the file ever
-  reaches it.
-- **Don't make the model your bouncer.** It only checks for the fake IDs it's already seen; a payload
-  dressed as ordinary setup strolls right past the smartest one. "A good model will catch it" isn't a
-  control — it's a hope wearing a lanyard, and it fails the day a disguise you didn't anticipate
-  walks in.
-- **Lock it in code, and know what each lock actually locks.** Sign by the *exact bytes* — that
-  proves sameness, not safety, so keep an honest list of what you blessed and why, and don't let a
-  skill mutate under a trusted name. Separate the reader from the thing that runs commands — *and*
-  sanitize the hand-off between them, or you didn't remove the risk, you just built a longer hallway
-  for the egg to roll down.
-- **And the one in all caps, because it's the reason I wrote this:** if you let your AI assistants
-  execute whatever shows up in a skill or tool file from sources you haven't pinned, **you are not
-  adding a feature — you are raising your risk exposure by an enormous multiple.** Report #2's worst
-  case was a wrong answer. This one's is someone else's code running with your assistant's hands.
-  Different weight class. Treat it like one.
+- **Treat every skill, tool definition, and loaded file as untrusted code — not documentation.**
+  Inside the model there's no line between "here's how this works" and "do this now." So you draw
+  that line yourself, in code, before the file ever gets near it.
+- **Don't make the model your bouncer.** It only clocks the fake IDs it's already seen. Dress a
+  command up as routine setup and it waves the smartest model on the floor right through. "A good
+  model will catch it" isn't a control, it's crossing your fingers — and it quits the first time
+  somebody shows up in a costume you didn't plan for.
+- **Lock it in code, and know what each lock actually does.** Sign by the exact bytes, not the name:
+  a hash tells you a file didn't change, never that it was safe to begin with, so keep an honest list
+  of what you trusted and why. And split the part that reads the skill from the part that runs
+  commands — then actually scrub whatever passes between them. Skip that scrub and you haven't closed
+  the hole, you've just moved it one room down the hall.
+- **And the one in all caps, because it's why I wrote this:** if you let your AI assistants run
+  whatever shows up in a skill or tool file you haven't pinned down, **you are not adding a feature —
+  you are multiplying your risk exposure, and not by a little.** Report #2's worst case was a wrong
+  answer. This one's is someone else's code running with your assistant's hands. Different weight
+  class. Treat it like one.
 
 As always: none of this gets you to zero. You don't remove *all* the risk from a system that hands
 a model files some other program (or person) wrote — you make the attack less likely, less
