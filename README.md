@@ -51,6 +51,7 @@ Full numbers, confidence intervals, method, and caveats are in each report itsel
 |---|---|---|
 | [**2026-11 — Talking small LLMs into leaking secrets**](reports/2026-11-steal-study/) | `steal` | Nine trickster archetypes vs. three small open-weight models guarding fake customer data. No model is uniformly "secure"; persona role-play beats all of them; code-enforced checks hold where prompt rules don't. |
 | [**2026-11 — Smuggling commands into an AI game master**](reports/2026-11-stored-injection-study/) | `plant` | Stored prompt injection through a tool-using app's own saved files. Only the single top-tier model resists (two frontier models fall 100%); heuristic defenses are capability-dependent; only a structural fix holds on every model. |
+| [**2026-11 — Remote code execution through poisoned skill files**](reports/2026-11-skill-injection-study/) | `execute` | A command hidden in a skill file runs on an unrelated request — RCE from a file meant to be documentation. "Use a smart model" is a mirage (Opus refuses an obvious payload 100%, runs the disguised same action 100%); the two heuristic defenses have opposite capability curves; only structural rungs hold, and only as far as their assumptions. |
 
 *(More reports will be added here as the project continues — one row per study.)*
 
