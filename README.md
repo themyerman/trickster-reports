@@ -88,6 +88,21 @@ a background in mythology to read the results.
 Everything here uses **fake data and fake secrets** against a purpose-built test target; no real
 systems, accounts, or customers are involved.
 
+## How these reports are made
+
+I build these studies with AI assistance, and I'd rather be precise about where that starts and
+stops than hand-wave it.
+
+The experiments, the data collation, the tables, and the figures are built with Claude (Anthropic):
+it runs the batteries, aggregates the numbers, and turns them into the grids and charts you see. The
+writing is mine — Claude's job on the prose is checking drafts for accuracy against the data, not
+drafting them. And the research direction is mine throughout: the questions, the attack designs, and
+the calls to keep digging whenever a run looked suspicious instead of stopping at the first clean
+number. More than one headline here exists because I didn't trust an early result and pushed for a
+deeper run.
+
+The framing, the conclusions, and any errors are mine.
+
 ## Citing this work
 
 > Myer, Thomas (2026). *Using Trickster Paradigms to Trick Small Open-Weight LLMs into Leaking
