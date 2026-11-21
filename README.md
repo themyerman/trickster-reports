@@ -43,6 +43,23 @@ reload):
   latency, not security. Only a **structural** fix — strip untrusted loaded content to its skeleton
   in code — held at 0% on every model, independent of which one is behind the app.
 
+From the third study (`execute` — a command hidden in an AI assistant's own **skill file**, run on an
+unrelated request: remote code execution from a file meant to be documentation):
+
+- **"Just use a smart model" is a mirage.** The top model refused an obvious `owned=` command 100% of
+  the time, then ran the *exact same action* dressed as routine setup (`font_cache_id=`) 100% of the
+  time. It wasn't resisting the attack — it was recognizing a clumsy disguise. Model judgment reads
+  the costume, not the intent.
+- **The two heuristic defenses have opposite capability curves.** A "treat skills as data" note is
+  useless on the weak model and airtight on the frontier three; a structural schema strip is the
+  reverse — it helps the weak model but leaves a plain-prose hole the *sharper* models obey more.
+  Lean on either alone and you're betting on a model you don't control.
+- **The two structural defenses hold — until you name their blind spot.** Signing proves a file is
+  unchanged, not that it was ever safe (poison it before you sign it and it loads forever); privilege
+  separation removes the command tool from the reader, but a confused-deputy hand-off passes the
+  command to a component that still has it. Only structural defenses hold, and only as far as their
+  own assumptions.
+
 Full numbers, confidence intervals, method, and caveats are in each report itself.
 
 ## Reports
