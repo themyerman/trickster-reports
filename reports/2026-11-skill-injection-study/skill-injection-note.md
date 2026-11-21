@@ -338,10 +338,10 @@ That's the conservative direction, which is the only direction I'm willing to ro
 
 ## 6. What to do about it
 
-None of this is new, and I won't pretend it is — it's the oldest rule in the book wearing a new hat:
-*don't trust input, and definitely don't trust input you can execute.* But there's a gap between
-knowing the rule and watching it put a frontier model's RCE rate at 100%, so here's the canon with
-this study's receipts stapled on:
+You already know all of this. It's the rule every security person has recited since before the web
+had pictures: *don't trust input, and really don't trust input you can run.* What this study adds
+isn't the rule — it's watching a frontier model blow straight past it to a 100% RCE rate. So, in
+practice:
 
 - **Treat every skill, tool definition, and loaded file as untrusted code — not documentation.** The
   model can't tell "here's how this works" from "do this now," so you have to, before the file ever
