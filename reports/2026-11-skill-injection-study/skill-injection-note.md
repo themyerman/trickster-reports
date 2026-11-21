@@ -229,8 +229,9 @@ are the blatant `owned=` runs, and Opus's safety training nopes out of an obviou
 before it lifts a finger. Change the costume and that whole column lights up — which is section 5,
 and the reason I wrote this note.
 
-Which is exactly when a security person should get suspicious. A defense that never fails in testing
-usually means you haven't found the test that breaks it yet.
+Those perfect zeros from signing and privsep are also exactly what should make a security person
+nervous rather than relieved. A control that never fails in testing usually hasn't been proven safe
+— it's just waiting for the input that breaks it. So that's the input I went looking for.
 
 ## 4. The lock that wasn't
 
