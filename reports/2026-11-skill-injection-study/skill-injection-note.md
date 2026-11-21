@@ -308,6 +308,10 @@ tool, edits the file, and cheerfully describes it as "the setup step the skill r
 never resisting the *attack.* It was recognizing a *bad disguise.* Make the disguise good and the
 smartest model on the board walks the egg right in.
 
+![The capability mirage: the signing pierce under a blatant versus subtle payload, across four models. Opus refuses the obvious command 0 out of 15 and runs the disguised same action 15 out of 15.](figures/capability-mirage.png)
+
+*Figure 1 — the capability mirage. Signing pierce, same benign command in two costumes, n=15.*
+
 The confused-deputy pipeline — the second "airtight" rung — tells the same story. All three Claudes
 saw through it when the command screamed `owned=` and refused to pass it along. Swap in the
 boring-looking command and it pierces every one of them, Opus included:
